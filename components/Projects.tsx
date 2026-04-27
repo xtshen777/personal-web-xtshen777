@@ -11,9 +11,13 @@ const FEATURED_SLUGS = new Set(['pixmancer', 'whatsdeal'])
 export default function Projects() {
   const [active, setActive] = useState<Filter>('All')
 
-  const filtered = active === 'All'
-    ? projects
-    : projects.filter(p => p.category === active)
+  const filtered = (active === 'All' ? projects : projects.filter(p => p.category === active))
+    .slice()
+    .sort((a, b) => {
+      const aF = FEATURED_SLUGS.has(a.slug) ? 0 : 1
+      const bF = FEATURED_SLUGS.has(b.slug) ? 0 : 1
+      return aF - bF
+    })
 
   return (
     <section id="projects" className="py-24 bg-mist">
