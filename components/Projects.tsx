@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard'
 
 type Filter = 'All' | 'UX/UI' | 'Marketing' | 'Art & Design'
 const FILTERS: Filter[] = ['All', 'UX/UI', 'Marketing', 'Art & Design']
+const FEATURED_SLUGS = new Set(['pixmancer', 'whatsdeal'])
 
 export default function Projects() {
   const [active, setActive] = useState<Filter>('All')
@@ -38,9 +39,14 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map(project => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
+          {filtered.map(project => {
+            const featured = FEATURED_SLUGS.has(project.slug)
+            return (
+              <div key={project.slug} className={featured ? 'col-span-full' : ''}>
+                <ProjectCard project={project} featured={featured} />
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
