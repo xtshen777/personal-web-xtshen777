@@ -48,4 +48,10 @@ describe('projects data', () => {
     const { next } = getAdjacentProjects('selected-works')
     expect(next).toBeNull()
   })
+
+  it('getAdjacentProjects returns null prev and next for unknown slug', () => {
+    const { prev, next } = getAdjacentProjects('nonexistent')
+    expect(prev).toBeNull()
+    expect(next).toBeNull()
+  })
 })
