@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --grad-from: #A78BFA;
+  --grad-mid:  #EC8FBC;
+  --grad-to:   #93C5FD;
+  --grad: linear-gradient(135deg, var(--grad-from), var(--grad-mid), var(--grad-to));
+}
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
   }
   body {
     @apply text-deep antialiased;
@@ -13,19 +20,25 @@
 
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, #A78BFA, #EC8FBC, #93C5FD);
+    background: var(--grad);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-bg {
-    background: linear-gradient(135deg, #A78BFA, #EC8FBC, #93C5FD);
+    background: var(--grad);
   }
 
+  /* Use on white (#fff) backgrounds */
   .gradient-border {
     border: 2px solid transparent;
-    background: linear-gradient(white, white) padding-box,
-                linear-gradient(135deg, #A78BFA, #EC8FBC, #93C5FD) border-box;
+    background: linear-gradient(white, white) padding-box, var(--grad) border-box;
+  }
+
+  /* Use on mist (#F7F5FF) backgrounds */
+  .gradient-border-mist {
+    border: 2px solid transparent;
+    background: linear-gradient(#F7F5FF, #F7F5FF) padding-box, var(--grad) border-box;
   }
 }
