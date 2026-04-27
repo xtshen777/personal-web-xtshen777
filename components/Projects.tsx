@@ -1,0 +1,48 @@
+'use client'
+
+import { useState } from 'react'
+import { projects } from '@/lib/projects'
+import ProjectCard from './ProjectCard'
+
+type Filter = 'All' | 'UX/UI' | 'Marketing' | 'Art & Design'
+const FILTERS: Filter[] = ['All', 'UX/UI', 'Marketing', 'Art & Design']
+
+export default function Projects() {
+  const [active, setActive] = useState<Filter>('All')
+
+  const filtered = active === 'All'
+    ? projects
+    : projects.filter(p => p.category === active)
+
+  return (
+    <section id="projects" className="py-24 bg-mist">
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="font-display font-bold text-4xl text-deep mb-12">
+          Selected <span className="gradient-text">Work</span>
+        </h2>
+
+        <div className="flex flex-wrap gap-3 mb-10">
+          {FILTERS.map(f => (
+            <button
+              key={f}
+              onClick={() => setActive(f)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                active === f
+                  ? 'gradient-bg text-white'
+                  : 'bg-white text-muted hover:text-deep'
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map(project => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
