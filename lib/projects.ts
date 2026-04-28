@@ -108,7 +108,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/growth.jpg',
+        src: '/projects/pixmancer/growth.png',
         alt: 'Social media and growth marketing content',
         caption: 'Growth strategy: multilingual content across TikTok, Instagram, YouTube, and Xiaohongshu',
       },
