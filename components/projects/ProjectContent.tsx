@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { ContentBlock } from '@/lib/projects'
 
 interface Props {
@@ -24,12 +25,9 @@ export default function ProjectContent({ sections }: Props) {
         if (block.type === 'image') {
           return (
             <figure key={i}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={block.src}
-                alt={block.alt}
-                className="w-full rounded-2xl object-cover"
-              />
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-mist">
+                <Image src={block.src} alt={block.alt} fill className="object-cover" />
+              </div>
               {block.caption && (
                 <figcaption className="text-center text-muted text-sm mt-3">
                   {block.caption}
@@ -44,12 +42,9 @@ export default function ProjectContent({ sections }: Props) {
             <div key={i} className="grid grid-cols-2 gap-4">
               {block.images.map((img, j) => (
                 <figure key={j}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full rounded-xl object-cover"
-                  />
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-mist">
+                    <Image src={img.src} alt={img.alt} fill className="object-cover" />
+                  </div>
                   {img.caption && (
                     <figcaption className="text-center text-muted text-xs mt-2">
                       {img.caption}

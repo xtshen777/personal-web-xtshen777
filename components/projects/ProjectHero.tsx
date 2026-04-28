@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface Props {
   title: string
   category: string
@@ -8,8 +10,7 @@ export default function ProjectHero({ title, category, coverImage }: Props) {
   return (
     <div className="relative w-full aspect-[16/7] bg-mist overflow-hidden">
       {coverImage && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={coverImage} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+        <Image src={coverImage} alt={title} fill className="object-cover" />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-deep/50 to-transparent" />
 
