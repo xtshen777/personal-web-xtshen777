@@ -2,6 +2,7 @@ export type ContentBlock =
   | { type: 'text'; heading?: string; body: string }
   | { type: 'image'; src: string; alt: string; caption?: string }
   | { type: 'image-grid'; images: { src: string; alt: string; caption?: string }[] }
+  | { type: 'stats'; items: { value: string; label: string }[] }
 
 export interface Project {
   slug: string
@@ -57,13 +58,38 @@ export const projects: Project[] = [
     slug: 'pixmancer',
     title: 'Pixmancer',
     category: 'UX/UI',
-    year: '2024',
-    role: 'Product Manager & Designer',
-    tools: ['Figma', 'AI/ML Concepts', 'Product Strategy'],
-    duration: '4 months',
+    year: '2025',
+    role: 'Product & UX/UI Designer · Market Operations',
+    tools: ['Figma', 'A/B Testing', 'Product Strategy', 'Social Media'],
+    duration: '8 months',
     coverImage: '/projects/pixmancer/cover.jpg',
-    summary: 'An AI-powered photo editing app that transforms amateur photos into professional-quality visuals.',
-    sections: [],
+    summary: 'An AI painting and photo editing app for global users across iOS, Android, and Web — shipped across the US, Canada, and Brazil.',
+    sections: [
+      {
+        type: 'text',
+        heading: 'Overview',
+        body: 'Full-time Product & UX/UI Designer and Market Operations Lead for Pixmancer AI, an AI painting and photo editing product under Royalforce. Responsible for end-to-end design and go-to-market execution across iOS, Android, and Web for global users.',
+      },
+      {
+        type: 'stats',
+        items: [
+          { value: '+35%', label: 'Onboarding completion rate' },
+          { value: '500K+', label: 'Content impressions' },
+          { value: '3', label: 'Countries' },
+          { value: '100%', label: 'Design delivery rate' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'What I Did',
+        body: 'UX/UI Design — Mobile onboarding flows, navigation, results/sharing/settings pages, activity banners, landing pages, and custom product modules.\n\nProduct Iteration — TestFlight testing oversight, bug triage, requirement documentation, and sprint participation.\n\nCompetitive Analysis — Benchmarked against Remini and AI Mirror to identify design gaps and prioritize improvements.\n\nMarket Operations — Built social media presence across TikTok, Instagram, YouTube, and Xiaohongshu; coordinated influencer partnerships across three markets.',
+      },
+      {
+        type: 'text',
+        heading: 'A/B Test: Onboarding Redesign',
+        body: 'The team designed two onboarding approaches — a conventional multi-step guide versus a streamlined single-step immersive experience. After 14 days of split testing, the optimized single-step flow demonstrated superior engagement and was rolled out across all platforms, lifting onboarding completion by 35%.',
+      },
+    ],
   },
   {
     slug: 'whatsdeal',

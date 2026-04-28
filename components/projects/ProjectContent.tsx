@@ -51,6 +51,19 @@ export default function ProjectContent({ sections }: Props) {
           )
         }
 
+        if (block.type === 'stats') {
+          return (
+            <div key={i} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {block.items.map(({ value, label }) => (
+                <div key={label} className="bg-mist rounded-2xl p-6 text-center">
+                  <p className="font-display font-bold text-4xl gradient-text mb-1">{value}</p>
+                  <p className="text-muted text-sm">{label}</p>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
         return null
       })}
 
