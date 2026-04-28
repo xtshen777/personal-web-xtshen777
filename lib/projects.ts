@@ -3,6 +3,7 @@ export type ContentBlock =
   | { type: 'image'; src: string; alt: string; caption?: string }
   | { type: 'image-grid'; images: { src: string; alt: string; caption?: string }[] }
   | { type: 'stats'; items: { value: string; label: string }[] }
+  | { type: 'table'; headers: string[]; rows: string[][] }
 
 export interface Project {
   slug: string
@@ -68,7 +69,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Overview',
-        body: 'Full-time Product & UX/UI Designer and Market Operations Lead for Pixmancer AI, an AI painting and photo editing product under Royalforce. The app spans iOS, Android, and Web platforms, serving global users across the US, Canada, and Brazil.',
+        body: 'Full-time Product & UX/UI Designer and Market Operations Lead for Pixmancer AI, an AI painting and photo editing app under Royalforce. The product covers iOS, Android, and Web, serving global users with AI generation and photo editing — launched across the US, Canada, and Brazil.',
       },
       {
         type: 'stats',
@@ -82,45 +83,100 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'My Role',
-        body: 'UX/UI Design — Owned the full design system: mobile onboarding flows, navigation, results/sharing/settings pages, activity banners, landing pages, and custom product modules.\n\nProduct Iteration — Managed TestFlight version tracking, bug reporting and triage, requirement documentation, sprint participation, and UI review cycles.\n\nCompetitive Analysis — Benchmarked against leading AI photo tools (Remini, AI Mirror) to identify gaps and inform design decisions.\n\nMarket Operations — Built and managed brand presence on TikTok, Instagram, YouTube, and Xiaohongshu. Produced daily multilingual content and coordinated influencer partnerships across three markets.',
+        body: 'UX/UI Design — Mobile onboarding flows, navigation bar, results/sharing/settings/referral pages, activity banners, landing pages, and custom product modules.\n\nProduct Iteration — Tracked TestFlight version testing, reported bugs, compiled requirements and issue lists, participated in sprint planning and UI reviews.\n\nBusiness Support — Produced promotional videos, multilingual marketing materials, SEO blog writing, SEMrush keyword research, and affiliate marketing setup.',
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/onboarding-ab.jpg',
-        alt: 'A/B test onboarding flows — Plan A vs Plan B',
-        caption: 'A/B test: multi-step guide (Plan A) vs. single-step immersive flow (Plan B)',
+        src: '/projects/pixmancer/features.jpg',
+        alt: 'Pixmancer core features: Image to Video, Photo Enhancement, AI Video Generator, AI Photo Filters',
+        caption: 'Core product features — AI Magic, Photo Enhancement, Video Generator, Style Transfer',
       },
       {
         type: 'text',
-        heading: 'Key Challenge: Onboarding Drop-off',
-        body: 'Early data showed significant drop-off during onboarding. The original flow forced users through five steps and a mandatory subscription prompt before they could experience the product.\n\nWe designed two competing approaches and ran a 14-day A/B test with a 50/50 user split:\n\nPlan A (Control) — Multi-step welcome dialogs, five-step editing workflow, forced membership prompt.\n\nPlan B (Optimized) — Single-step introduction, three-step core flow, 7-day free VIP trial with soft conversion instead of a paywall.\n\nPlan B won across all engagement metrics. By reducing cognitive load, showcasing AI effects upfront, and lowering the decision barrier through a free trial, onboarding completion improved by 35%.',
+        heading: 'Core Problem',
+        body: 'Through competitive benchmarking (Remini, AI Mirror), user interviews, and social media research, we identified four key pain points in the AI photo editing space:\n\n60% of new users dropped off on first use — overwhelmed by complexity, unable to find features they wanted.\n\n32% of users gave up after the first editing step — friction in the core flow pushed them away before they got value.\n\nCross-platform fragmentation — inconsistent experiences across devices created re-learning friction for returning users.\n\nZero brand awareness — as a cold-start product, there was no organic traffic or existing user trust to build on.',
+      },
+      {
+        type: 'text',
+        heading: 'Design Solution: Onboarding A/B Test',
+        body: 'To address high new-user drop-off and a complex core editing flow, we designed two competing onboarding approaches and validated them with a 14-day small-scale A/B test before full rollout.',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/plan-a.jpg',
+        alt: 'Plan A: multi-step onboarding with full feature access and forced paywall',
+        caption: 'Plan A (Control) — Multi-step welcome dialogs + long editing flow + hard paywall',
+      },
+      {
+        type: 'text',
+        heading: 'Plan A — Control',
+        body: 'Core Design: Multi-step welcome dialogs + fully open long-path editing flow.\n\nUser Flow: Launch → multiple welcome screens (must complete all steps) → template selection → preview → upload → blurry result → paywall to see high-res → mandatory subscription modal.\n\nDesign Premise: Full feature introduction upfront, aligned with industry-standard onboarding logic — let users understand all capabilities before taking action.',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/plan-b.jpg',
+        alt: 'Plan B: single-step onboarding with 3-step core flow and 7-day free trial',
+        caption: 'Plan B (Experiment) — Minimal single-step guide + 3-step core loop + soft 7-day trial',
+      },
+      {
+        type: 'text',
+        heading: 'Plan B — Experiment',
+        body: 'Core Design: Minimal single-step welcome + 3-step closed-loop core flow + soft conversion via 7-day free VIP trial.\n\nUser Flow: Launch → 1-page welcome (1 tap to enter) → lightweight feature preview with "Try Now" → 3-step edit loop (select photo → choose AI effect → save result) → no forced paywall, soft 7-day trial CTA instead.\n\nDesign Logic:\n— Highlight core action buttons, hide non-essential features to reduce cognitive load\n— Add AI before/after preview so users quickly perceive product value\n— Replace hard paywall with 7-day free trial to lower the decision barrier and lay groundwork for subscription conversion\n— Reorder home features by beginner priority, surfacing high-frequency, low-barrier AI templates first',
+      },
+      {
+        type: 'table',
+        headers: ['Metric', 'Plan A', 'Plan B', 'Change'],
+        rows: [
+          ['Onboarding completion rate', '52%', '87%', '+35%'],
+          ['First core feature usage', '48%', '76%', '+28%'],
+          ['7-day retention rate', '12%', '22%', '+10%'],
+          ['Core task time', '120s', '72s', '-40%'],
+          ['7-day free trial claim rate', '—', '62%', '—'],
+          ['Subscription conversion rate', '3.2%', '7.8%', '+143%'],
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Post-Launch Optimizations',
+        body: 'Based on test results, Plan B was fully rolled out with three additional improvements:\n\n1. Streamlined the 7-day free trial claim flow to reduce friction and improve claim rate.\n2. Added a beginner task system with points rewards to guide progressive feature exploration and improve retention.\n3. Optimized AI generation loading speed to reduce wait time and improve overall experience.',
       },
       {
         type: 'image',
         src: '/projects/pixmancer/multiplatform.jpg',
-        alt: 'Multi-platform design system across iOS, Android, and Web',
-        caption: 'Unified design system covering iOS, Android, tablet, and Web',
+        alt: 'Multi-platform design system across iOS, Android, tablet, and Web',
+        caption: 'Unified design system — iOS, Android, iPad, and Web',
       },
       {
         type: 'text',
         heading: 'Multi-Platform Design System',
-        body: 'Established unified design specifications covering color, typography, component libraries, and interaction logic — keeping the experience consistent across iOS, Android, tablet, and Web while adapting to each platform\'s native patterns.',
+        body: 'To fix cross-platform experience fragmentation, we built a complete design system covering color, typography, components, and interaction logic — simultaneously delivering:\n\n1. Full-platform UI for iOS/Android mobile, iPad, and Web\n2. Device-specific interaction adaptations to keep user habits consistent across platforms\n3. Visual consistency across activity banners and multilingual materials to strengthen brand recognition',
+      },
+      {
+        type: 'text',
+        heading: 'Product Iteration & Quality',
+        body: 'For high-frequency iteration, we built a complete test → feedback → close-loop process:\n\n1. Daily TestFlight version testing — proactively identifying bugs and experience issues, syncing with the team\n2. Weekly sprint planning and UI reviews — staying aligned with development, rapidly responding to design change requests\n3. 100% on-time design delivery — all version feedback closed',
       },
       {
         type: 'image',
         src: '/projects/pixmancer/growth.png',
-        alt: 'Social media and growth marketing content',
-        caption: 'Growth strategy: multilingual content across TikTok, Instagram, YouTube, and Xiaohongshu',
+        alt: 'Social media brand accounts on TikTok, Instagram, and Pinterest',
+        caption: 'Building brand presence across TikTok, Instagram, YouTube, and Xiaohongshu',
       },
       {
         type: 'text',
-        heading: 'Growth & Operations',
-        body: 'Beyond design, I led the go-to-market execution: launching four social media channels, producing multilingual promotional content, optimizing SEO blog posts, and managing influencer partnerships across the US, Canada, and Brazil. This generated 500K+ content impressions and directly supported the product\'s international growth.',
+        heading: 'Global Cold-Start Growth',
+        body: 'With zero initial traffic, we built a full-channel growth system:\n\n1. Launched and managed brand accounts on TikTok, Instagram, YouTube, and Xiaohongshu with daily multilingual content\n2. Coordinated influencer partnerships across the US, Canada, and Brazil\n3. Produced promotional videos and multilingual materials; executed SEO blog writing and keyword optimization to boost organic reach',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/influencer.jpg',
+        alt: 'Pixmancer influencer collaboration brief for Xiaohongshu',
+        caption: 'Influencer partnership brief — Pixmancer × Xiaohongshu',
       },
       {
         type: 'text',
-        heading: 'What I Learned',
-        body: 'This role taught me to think across the full product lifecycle — from research-backed design decisions to growth execution. The biggest shift was learning to resist feature accumulation and instead focus on reducing friction at every step. Good design and good operations reinforce each other: the cleaner the onboarding, the better the content performs.',
+        heading: 'Key Learnings',
+        body: 'This project gave me complete ownership of a 0-to-1 AI product launch. Two core takeaways:\n\nUser-pain-point-driven design — I learned to start from real user pain points and let research drive decisions, not feature accumulation. In a high-frequency iteration environment, this means constantly balancing design quality, development cost, and user experience.\n\nFull-chain commercial thinking — Beyond pure design, I integrated product, development, marketing, and operations into a single coherent strategy. Real design work isn\'t just making screens — it\'s understanding how design decisions connect to business outcomes.',
       },
     ],
   },

@@ -54,6 +54,35 @@ export default function ProjectContent({ sections }: Props) {
           )
         }
 
+        if (block.type === 'table') {
+          return (
+            <div key={i} className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-deep/10">
+                    {block.headers.map((h, j) => (
+                      <th key={j} className="text-left py-3 px-4 font-display font-semibold text-deep first:pl-0">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {block.rows.map((row, j) => (
+                    <tr key={j} className="border-b border-deep/5 hover:bg-mist/50 transition-colors">
+                      {row.map((cell, k) => (
+                        <td key={k} className={`py-3 px-4 first:pl-0 ${k === 0 ? 'text-deep font-medium' : k === 3 ? 'font-semibold gradient-text' : 'text-muted'}`}>
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )
+        }
+
         if (block.type === 'stats') {
           return (
             <div key={i} className="grid grid-cols-2 md:grid-cols-4 gap-6">
