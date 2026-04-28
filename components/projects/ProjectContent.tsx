@@ -24,7 +24,12 @@ export default function ProjectContent({ sections }: Props) {
         if (block.type === 'image') {
           return (
             <figure key={i}>
-              <div className="w-full rounded-2xl bg-mist aspect-video gradient-bg opacity-30" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={block.src}
+                alt={block.alt}
+                className="w-full rounded-2xl object-cover"
+              />
               {block.caption && (
                 <figcaption className="text-center text-muted text-sm mt-3">
                   {block.caption}
@@ -39,7 +44,12 @@ export default function ProjectContent({ sections }: Props) {
             <div key={i} className="grid grid-cols-2 gap-4">
               {block.images.map((img, j) => (
                 <figure key={j}>
-                  <div className="w-full rounded-xl bg-mist aspect-video gradient-bg opacity-30" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full rounded-xl object-cover"
+                  />
                   {img.caption && (
                     <figcaption className="text-center text-muted text-xs mt-2">
                       {img.caption}

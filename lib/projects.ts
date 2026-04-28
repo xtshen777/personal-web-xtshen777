@@ -68,7 +68,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Overview',
-        body: 'Full-time Product & UX/UI Designer and Market Operations Lead for Pixmancer AI, an AI painting and photo editing product under Royalforce. Responsible for end-to-end design and go-to-market execution across iOS, Android, and Web for global users.',
+        body: 'Full-time Product & UX/UI Designer and Market Operations Lead for Pixmancer AI, an AI painting and photo editing product under Royalforce. The app spans iOS, Android, and Web platforms, serving global users across the US, Canada, and Brazil.',
       },
       {
         type: 'stats',
@@ -81,13 +81,46 @@ export const projects: Project[] = [
       },
       {
         type: 'text',
-        heading: 'What I Did',
-        body: 'UX/UI Design — Mobile onboarding flows, navigation, results/sharing/settings pages, activity banners, landing pages, and custom product modules.\n\nProduct Iteration — TestFlight testing oversight, bug triage, requirement documentation, and sprint participation.\n\nCompetitive Analysis — Benchmarked against Remini and AI Mirror to identify design gaps and prioritize improvements.\n\nMarket Operations — Built social media presence across TikTok, Instagram, YouTube, and Xiaohongshu; coordinated influencer partnerships across three markets.',
+        heading: 'My Role',
+        body: 'UX/UI Design — Owned the full design system: mobile onboarding flows, navigation, results/sharing/settings pages, activity banners, landing pages, and custom product modules.\n\nProduct Iteration — Managed TestFlight version tracking, bug reporting and triage, requirement documentation, sprint participation, and UI review cycles.\n\nCompetitive Analysis — Benchmarked against leading AI photo tools (Remini, AI Mirror) to identify gaps and inform design decisions.\n\nMarket Operations — Built and managed brand presence on TikTok, Instagram, YouTube, and Xiaohongshu. Produced daily multilingual content and coordinated influencer partnerships across three markets.',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/onboarding-ab.jpg',
+        alt: 'A/B test onboarding flows — Plan A vs Plan B',
+        caption: 'A/B test: multi-step guide (Plan A) vs. single-step immersive flow (Plan B)',
       },
       {
         type: 'text',
-        heading: 'A/B Test: Onboarding Redesign',
-        body: 'The team designed two onboarding approaches — a conventional multi-step guide versus a streamlined single-step immersive experience. After 14 days of split testing, the optimized single-step flow demonstrated superior engagement and was rolled out across all platforms, lifting onboarding completion by 35%.',
+        heading: 'Key Challenge: Onboarding Drop-off',
+        body: 'Early data showed significant drop-off during onboarding. The original flow forced users through five steps and a mandatory subscription prompt before they could experience the product.\n\nWe designed two competing approaches and ran a 14-day A/B test with a 50/50 user split:\n\nPlan A (Control) — Multi-step welcome dialogs, five-step editing workflow, forced membership prompt.\n\nPlan B (Optimized) — Single-step introduction, three-step core flow, 7-day free VIP trial with soft conversion instead of a paywall.\n\nPlan B won across all engagement metrics. By reducing cognitive load, showcasing AI effects upfront, and lowering the decision barrier through a free trial, onboarding completion improved by 35%.',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/multiplatform.jpg',
+        alt: 'Multi-platform design system across iOS, Android, and Web',
+        caption: 'Unified design system covering iOS, Android, tablet, and Web',
+      },
+      {
+        type: 'text',
+        heading: 'Multi-Platform Design System',
+        body: 'Established unified design specifications covering color, typography, component libraries, and interaction logic — keeping the experience consistent across iOS, Android, tablet, and Web while adapting to each platform\'s native patterns.',
+      },
+      {
+        type: 'image',
+        src: '/projects/pixmancer/growth.jpg',
+        alt: 'Social media and growth marketing content',
+        caption: 'Growth strategy: multilingual content across TikTok, Instagram, YouTube, and Xiaohongshu',
+      },
+      {
+        type: 'text',
+        heading: 'Growth & Operations',
+        body: 'Beyond design, I led the go-to-market execution: launching four social media channels, producing multilingual promotional content, optimizing SEO blog posts, and managing influencer partnerships across the US, Canada, and Brazil. This generated 500K+ content impressions and directly supported the product\'s international growth.',
+      },
+      {
+        type: 'text',
+        heading: 'What I Learned',
+        body: 'This role taught me to think across the full product lifecycle — from research-backed design decisions to growth execution. The biggest shift was learning to resist feature accumulation and instead focus on reducing friction at every step. Good design and good operations reinforce each other: the cleaner the onboarding, the better the content performs.',
       },
     ],
   },
