@@ -87,7 +87,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/features.jpg',
+        src: '/projects/pixmancer/features.png',
         alt: 'Pixmancer core features: Image to Video, Photo Enhancement, AI Video Generator, AI Photo Filters',
         caption: 'Core product features — AI Magic, Photo Enhancement, Video Generator, Style Transfer',
       },
@@ -103,7 +103,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/plan-a.jpg',
+        src: '/projects/pixmancer/plan-a.png',
         alt: 'Plan A: multi-step onboarding with full feature access and forced paywall',
         caption: 'Plan A (Control) — Multi-step welcome dialogs + long editing flow + hard paywall',
       },
@@ -114,7 +114,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/plan-b.jpg',
+        src: '/projects/pixmancer/plan-b.png',
         alt: 'Plan B: single-step onboarding with 3-step core flow and 7-day free trial',
         caption: 'Plan B (Experiment) — Minimal single-step guide + 3-step core loop + soft 7-day trial',
       },
@@ -169,7 +169,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/projects/pixmancer/influencer.jpg',
+        src: '/projects/pixmancer/influencer.png',
         alt: 'Pixmancer influencer collaboration brief for Xiaohongshu',
         caption: 'Influencer partnership brief — Pixmancer × Xiaohongshu',
       },
