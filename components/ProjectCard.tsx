@@ -12,6 +12,7 @@ export default function ProjectCard({ project, featured = false }: Props) {
       <article
         role="article"
         data-category={project.category}
+        data-categories={[project.category, ...(project.extraCategories ?? [])].join(',')}
         className="group relative rounded-2xl overflow-hidden bg-mist aspect-[16/8]"
       >
         <div className="absolute inset-0 gradient-bg opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
@@ -38,6 +39,7 @@ export default function ProjectCard({ project, featured = false }: Props) {
     <article
       role="article"
       data-category={project.category}
+      data-categories={[project.category, ...(project.extraCategories ?? [])].join(',')}
       className="group relative rounded-2xl overflow-hidden bg-mist aspect-[4/3]"
     >
       <div className="absolute inset-0 gradient-bg opacity-20" />

@@ -35,7 +35,8 @@ describe('Projects', () => {
     render(<Projects />)
     fireEvent.click(screen.getByRole('button', { name: 'Marketing' }))
     screen.getAllByRole('article').forEach(card => {
-      expect(card.getAttribute('data-category')).toBe('Marketing')
+      const categories = card.getAttribute('data-categories') ?? ''
+      expect(categories.split(',').includes('Marketing')).toBe(true)
     })
   })
 })
