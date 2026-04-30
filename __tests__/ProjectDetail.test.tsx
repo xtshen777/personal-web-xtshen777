@@ -8,14 +8,14 @@ import { projects } from '@/lib/projects'
 const mockProject = projects[0] // menobook
 
 describe('ProjectHero', () => {
-  it('renders project title', () => {
-    render(<ProjectHero title={mockProject.title} category={mockProject.category} coverImage={mockProject.coverImage} />)
-    expect(screen.getByRole('heading', { name: mockProject.title })).toBeInTheDocument()
+  it('renders cover image', () => {
+    render(<ProjectHero title={mockProject.title} coverImage={mockProject.coverImage} />)
+    expect(screen.getByRole('img', { name: mockProject.title })).toBeInTheDocument()
   })
 
-  it('renders category tag', () => {
-    render(<ProjectHero title={mockProject.title} category={mockProject.category} coverImage={mockProject.coverImage} />)
-    expect(screen.getByText(mockProject.category)).toBeInTheDocument()
+  it('renders nothing when no coverImage', () => {
+    const { container } = render(<ProjectHero title={mockProject.title} coverImage="" />)
+    expect(container.firstChild).toBeNull()
   })
 })
 

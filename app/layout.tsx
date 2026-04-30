@@ -5,18 +5,26 @@ import './globals.css'
 const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
-  display: 'swap',
+  display: 'optional',
+  preload: false,
 })
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
+  display: 'optional',
+  preload: false,
 })
 
 export const metadata: Metadata = {
   title: 'Lucia Shen | Portfolio',
   description: 'Product Manager · UX/UI Designer · Marketer',
+  icons: {
+    icon: [
+      { url: '/favicon-light.png', type: 'image/png' },
+      { url: '/favicon-dark.png', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -25,7 +25,7 @@ export default function About() {
             <p>
               I&apos;m Lucia Shen, a product manager and UX/UI designer with a
               background spanning product strategy, visual design, and marketing.
-              I specialize in the full product lifecycle — from user research and
+              I specialize in the full product lifecycle, from user research and
               ideation to high-fidelity prototypes and go-to-market execution.
             </p>
             <p>
@@ -36,7 +36,7 @@ export default function About() {
             </p>
             <p>
               I believe great products live at the intersection of thoughtful design
-              and measurable impact — and I bring both to every project I touch.
+              and measurable impact. I bring both to every project I touch.
             </p>
           </div>
 

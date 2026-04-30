@@ -4,14 +4,16 @@ import { useState } from 'react'
 import { projects } from '@/lib/projects'
 import ProjectCard from './ProjectCard'
 
-type Filter = 'All' | 'UX/UI' | 'Marketing' | 'Art & Design'
-const FILTERS: Filter[] = ['All', 'UX/UI', 'Marketing', 'Art & Design']
+type Filter = 'All' | 'UX/UI' | 'Product' | 'Marketing' | 'Art & Design'
+const FILTERS: Filter[] = ['All', 'UX/UI', 'Product', 'Marketing', 'Art & Design']
 const FEATURED_SLUGS = new Set(['pixmancer', 'whatsdeal'])
 
 export default function Projects() {
   const [active, setActive] = useState<Filter>('All')
 
-  const filtered = (active === 'All' ? projects : projects.filter(p => p.category === active))
+  const filtered = (active === 'All' ? projects : projects.filter(p =>
+    p.category === active || p.extraCategories?.includes(active)
+  ))
     .slice()
     .sort((a, b) => {
       const aF = FEATURED_SLUGS.has(a.slug) ? 0 : 1
