@@ -13,8 +13,8 @@ const config: Config = {
         muted: '#6B7280',
       },
       fontFamily: {
-        sans: ['Inter Variable', 'sans-serif'],
-        display: ['DM Sans Variable', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-dm-sans)', 'sans-serif'],
       },
     },
   },

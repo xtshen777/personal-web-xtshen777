@@ -1,7 +1,18 @@
 import type { Metadata } from 'next'
-import '@fontsource-variable/dm-sans'
-import '@fontsource-variable/inter'
+import localFont from 'next/font/local'
 import './globals.css'
+
+const dmSans = localFont({
+  src: '../public/fonts/dm-sans.woff2',
+  variable: '--font-dm-sans',
+  display: 'swap',
+})
+
+const inter = localFont({
+  src: '../public/fonts/inter.woff2',
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
 
@@ -17,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${dmSans.variable} ${inter.variable}`}>
       <body className="bg-white font-sans">
         {children}
       </body>
