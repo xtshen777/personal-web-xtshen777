@@ -16,13 +16,14 @@ const inter = Inter({
   preload: false,
 })
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 export const metadata: Metadata = {
   title: 'Lucia Shen | Portfolio',
   description: 'Product Manager · UX/UI Designer · Marketer',
   icons: {
     icon: [
-      { url: '/favicon-light.png', type: 'image/png' },
-      { url: '/favicon-dark.png', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+      { url: `${base}/favicon-dark.png`, type: 'image/png', media: '(prefers-color-scheme: dark)' },
     ],
   },
 }
