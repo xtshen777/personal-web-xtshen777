@@ -1,8 +1,8 @@
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/lib/projects'
 
 describe('projects data', () => {
-  it('has exactly 9 projects', () => {
-    expect(projects).toHaveLength(9)
+  it('has exactly 10 projects', () => {
+    expect(projects).toHaveLength(10)
   })
 
   it('every project has all required fields', () => {

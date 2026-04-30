@@ -630,6 +630,162 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'asl-speller',
+    title: 'ASL Fingerspelling Translator',
+    category: 'UX/UI',
+    extraCategories: ['Product'],
+    tagline: 'Accessible UX/UI  |  AI Product Design  |  Computer Vision',
+    year: '2026',
+    time: 'Jan – Mar 2026',
+    role: 'AI Accessibility Product & UX/UI Designer, Computer Vision Algorithm Engineer (Academic)',
+    tools: ['MediaPipe', 'Python', 'MLP', 'Figma', 'Tkinter'],
+    duration: '3 months',
+    coverImage: '/projects/asl-speller/cover.png',
+    summary: 'A real-time accessible communication tool for Deaf and hard-of-hearing communities and non-signers. Using topological signal processing and a lightweight MLP model, we achieved 99.66% cross-user accuracy in complex real-world environments, reduced inference latency by 127x versus ResNet-18, and shipped a fully deployable system that runs on any standard consumer laptop.',
+    sections: [
+      {
+        type: 'text',
+        heading: 'Overview',
+        body: 'American Sign Language (ASL) is the primary language of Deaf and hard-of-hearing communities across North America. Fingerspelling, spelling out proper nouns letter by letter, is a core component of everyday communication that most non-signers cannot read. This project built a real-time translation tool targeting the three core failures of existing systems: poor environmental robustness, high inference latency, and fragmented interaction design. By combining topological signal processing with a custom lightweight MLP, we reached 99.66% recognition accuracy under real-world conditions, eliminated output flicker, and shipped a working end-to-end system that runs on any standard laptop camera.',
+      },
+      {
+        type: 'stats',
+        items: [
+          { value: '99.66%', label: 'Cross-user recognition accuracy' },
+          { value: '127x', label: 'Inference speed vs. ResNet-18' },
+          { value: '10s', label: 'Average user onboarding time' },
+          { value: '0.5s', label: 'Stable recognition output delay' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'My Role',
+        body: 'AI Accessibility Product & UX/UI Design: user pain point research, product architecture design, algorithm-UX co-optimization, user testing and iteration.\n\nUX/UI Design: real-time interaction interface, gesture recognition feedback module, anti-jitter spelling board UI, confidence visualization, multi-device adaptation.\n\nComputer Vision Algorithm: ASL gesture dataset construction, hand keypoint extraction, topological normalization, lightweight MLP model training, on-device real-time inference optimization.\n\nAcademic Research: research paper and academic poster production, experimental data analysis, real-time interactive demo development.',
+      },
+      {
+        type: 'carousel',
+        heading: 'Live Speller: The System',
+        variant: 'screen',
+        slides: [
+          {
+            title: 'Real-Time Recognition Interface',
+            description: 'Left panel: live camera feed with hand skeleton overlay for instant visual feedback. Center: current gesture confidence bar. Right: anti-jitter spelling board that only commits a letter after 15 consecutive consistent frames above 75% confidence.',
+            src: '/projects/asl-speller/ui-overview.png',
+            alt: 'Live Speller interface showing real-time camera feed, gesture confidence indicator, and spelling board',
+          },
+          {
+            title: 'System Architecture',
+            description: 'Five-stage pipeline: video input via standard webcam, 3D hand keypoint extraction via MediaPipe, topological normalization (wrist-origin translation and scale normalization), lightweight MLP inference on 42-dimensional features, and interactive post-processing with temporal filtering.',
+            src: '/projects/asl-speller/architecture.png',
+            alt: 'Overall system architecture diagram for real-time ASL alphabet recognition',
+          },
+        ],
+      },
+      {
+        type: 'pain-points',
+        heading: 'Core Problem',
+        intro: 'We focused on the core scenario of real-time bidirectional deaf-hearing communication, unpacking the real pain points of two user groups:',
+        problems: [
+          {
+            stat: 'Deaf Users',
+            description: 'ASL fingerspelling is the primary way to express names, addresses, and professional terms, but the vast majority of non-signers cannot quickly read hand gestures. Severe communication barriers exist in everyday contexts: medical appointments, shopping, and social situations.',
+          },
+          {
+            stat: 'Non-signers',
+            description: 'Existing recognition tools either require expensive professional hardware with a steep learning curve, or rely on pixel-level CNN models that collapse in real-world lighting. High latency and flickering output make face-to-face real-time conversation impossible.',
+          },
+        ],
+        solutions: [
+          { title: 'High robustness across lighting and backgrounds' },
+          { title: 'Zero-latency real-time recognition' },
+          { title: 'No specialized hardware required' },
+          { title: 'Readable, stable output for non-signers' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Product Architecture',
+      },
+      {
+        type: 'image',
+        src: '/projects/asl-speller/architecture.png',
+        alt: 'Five-stage system architecture: video input, keypoint extraction, topological normalization, MLP inference, interactive post-processing',
+        caption: 'End-to-end pipeline: from raw webcam frames to stable readable text output',
+      },
+      {
+        type: 'text',
+        body: 'Video input via standard webcam (no extra hardware). MediaPipe extracts 21 3D hand keypoints, then geometric normalization (wrist-origin translation + scale normalization) eliminates the effect of hand position, size, and distance from camera, solving environmental interference at the root. A custom lightweight MLP classifies the resulting 42-dimensional feature vector in microseconds. A 15-frame temporal filter removes flicker caused by micro-movements and camera noise. The spelling board then stitches discrete letter predictions into fluent, readable text.',
+      },
+      {
+        type: 'text',
+        heading: 'UX Design',
+      },
+      {
+        type: 'image',
+        src: '/projects/asl-speller/ui-annotated.png',
+        alt: 'Annotated Live Speller UI showing: skeleton overlay camera feed (left), confidence result zone with 15-frame anti-jitter (top right), and spelling board (bottom right)',
+        caption: 'Interface zones: real-time camera area, recognition result area, spelling board area',
+      },
+      {
+        type: 'text',
+        body: 'Real-time visual feedback: the left panel mirrors the live camera feed with hand skeleton overlay, giving users instant gesture confirmation without guessing the recognition state.\n\nAnti-jitter spelling board: a 15-frame (0.5s) temporal queue commits a letter only when 15 consecutive frames agree with confidence above 75%, eliminating flicker and drastically reducing cognitive load for non-signers.\n\nClear information hierarchy: the interface divides cleanly into camera area, recognition result area, and spelling board area. Core translated content is highlighted so users can parse the output at a glance with zero learning curve.',
+      },
+      {
+        type: 'text',
+        heading: 'Technical Innovation',
+      },
+      {
+        type: 'image',
+        src: '/projects/asl-speller/normalization.png',
+        alt: 'Topological normalization formula and keypoint coordinate visualization showing wrist-origin translation and scale normalization',
+        caption: 'Geometric normalization: translating all keypoints relative to the wrist, then scaling to a unit cube',
+      },
+      {
+        type: 'text',
+        body: 'Topological keypoint approach: abandoning CNN pixel-level processing eliminates background and lighting interference from the root, solving the accuracy collapse of traditional systems in real environments.\n\nGeometric normalization: mathematical transformation for translation and scale invariance resolves differences in hand size and camera distance across users, achieving high cross-user generalization.\n\nLightweight MLP architecture: the custom [128, 64] architecture has only 15.4K parameters, 724x fewer than ResNet-18. Single-frame inference latency is 0.092ms, enabling zero-latency real-time recognition while leaving ample headroom for UX interaction optimization. The model runs on standard CPU with no GPU required.',
+      },
+      {
+        type: 'text',
+        heading: 'Results',
+      },
+      {
+        type: 'image',
+        src: '/projects/asl-speller/results-charts.png',
+        alt: 'Bar chart and accuracy curve comparing our MLP system vs. ablation baselines across 40 training epochs',
+        caption: 'Ablation study: final test accuracy and convergence curves across model variants',
+      },
+      {
+        type: 'table',
+        headers: ['Metric', 'Our System (MLP)', 'ResNet-18 Baseline', 'Result'],
+        rows: [
+          ['Cross-user Accuracy', '99.66%', '21.77%', '+78pp'],
+          ['Inference Latency', '0.092ms / frame', '11.7ms / frame', '127x faster'],
+          ['Model Parameters', '15.4K', '11.2M', '724x smaller'],
+          ['Hardware Required', 'Standard webcam', 'High-end GPU', 'Consumer-grade'],
+          ['Avg. Onboarding Time', '10s', 'N/A', 'Zero learning curve'],
+        ],
+      },
+      {
+        type: 'takeaway-list',
+        heading: 'Key Learnings',
+        items: [
+          {
+            title: 'Algorithm and UX must be co-designed',
+            body: 'Accuracy alone does not make a system usable. We treated output stability and readability as first-class product requirements from day one, not afterthoughts. The 15-frame anti-jitter filter was as much a UX decision as an engineering one: reducing output noise directly reduced the cognitive effort required to follow a real-time conversation.',
+          },
+          {
+            title: 'Abstraction is an accessibility strategy',
+            body: 'Replacing pixel-level CNN processing with normalized keypoints did not just improve accuracy. It decoupled the system from specific hardware and lighting conditions, which directly expanded the accessible user base to anyone with a standard webcam. The right technical abstraction and the right accessibility outcome were the same decision.',
+          },
+          {
+            title: 'Real-world data beats benchmark data',
+            body: 'Traditional systems performed well on clean benchmark datasets but collapsed in real environments (21.77% accuracy for ResNet-18 on our test set). Building our own 13,000-image multi-user real-environment dataset was not just a research requirement. It was the only way to validate that the product actually worked for the people it was designed to serve.',
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'three-wishes',
     title: 'Three Wishes',
     category: 'Marketing',
