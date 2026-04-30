@@ -222,7 +222,7 @@ export const projects: Project[] = [
     category: 'UX/UI',
     extraCategories: ['Product', 'Marketing'],
     tagline: 'UX/UI  |  Product  |  Marketing',
-    year: '2025',
+    year: '2026',
     time: 'Feb – Sep 2026',
     role: 'Product & UX/UI Designer · Market Operations',
     tools: ['Figma', 'A/B Testing', 'Product Strategy', 'Social Media'],
@@ -422,7 +422,7 @@ export const projects: Project[] = [
     category: 'UX/UI',
     extraCategories: ['Product', 'Marketing'],
     tagline: 'UX/UI  |  Product  |  Marketing',
-    year: '2025',
+    year: '2026',
     time: 'Feb – Sep 2026',
     role: 'Product & UX/UI Designer · Market Operations',
     tools: ['Figma', 'Axure', 'SEMrush', 'User Research', 'Growth Strategy'],
@@ -638,9 +638,10 @@ export const projects: Project[] = [
     year: '2026',
     time: 'Jan – Mar 2026',
     role: 'AI Accessibility Product & UX/UI Designer, Computer Vision Algorithm Engineer (Academic)',
-    tools: ['MediaPipe', 'Python', 'MLP', 'Figma', 'Tkinter'],
+    tools: ['MediaPipe', 'Python', 'Machine Learning', 'Computer Vision', 'Figma'],
     duration: '3 months',
     coverImage: '/projects/asl-speller/cover.png',
+    coverPosition: '50% 35%',
     summary: 'A real-time accessible communication tool for Deaf and hard-of-hearing communities and non-signers. Using topological signal processing and a lightweight MLP model, we achieved 99.66% cross-user accuracy in complex real-world environments, reduced inference latency by 127x versus ResNet-18, and shipped a fully deployable system that runs on any standard consumer laptop.',
     sections: [
       {
@@ -661,25 +662,6 @@ export const projects: Project[] = [
         type: 'text',
         heading: 'My Role',
         body: 'AI Accessibility Product & UX/UI Design: user pain point research, product architecture design, algorithm-UX co-optimization, user testing and iteration.\n\nUX/UI Design: real-time interaction interface, gesture recognition feedback module, anti-jitter spelling board UI, confidence visualization, multi-device adaptation.\n\nComputer Vision Algorithm: ASL gesture dataset construction, hand keypoint extraction, topological normalization, lightweight MLP model training, on-device real-time inference optimization.\n\nAcademic Research: research paper and academic poster production, experimental data analysis, real-time interactive demo development.',
-      },
-      {
-        type: 'carousel',
-        heading: 'Live Speller: The System',
-        variant: 'screen',
-        slides: [
-          {
-            title: 'Real-Time Recognition Interface',
-            description: 'Left panel: live camera feed with hand skeleton overlay for instant visual feedback. Center: current gesture confidence bar. Right: anti-jitter spelling board that only commits a letter after 15 consecutive consistent frames above 75% confidence.',
-            src: '/projects/asl-speller/ui-overview.png',
-            alt: 'Live Speller interface showing real-time camera feed, gesture confidence indicator, and spelling board',
-          },
-          {
-            title: 'System Architecture',
-            description: 'Five-stage pipeline: video input via standard webcam, 3D hand keypoint extraction via MediaPipe, topological normalization (wrist-origin translation and scale normalization), lightweight MLP inference on 42-dimensional features, and interactive post-processing with temporal filtering.',
-            src: '/projects/asl-speller/architecture.png',
-            alt: 'Overall system architecture diagram for real-time ASL alphabet recognition',
-          },
-        ],
       },
       {
         type: 'pain-points',
