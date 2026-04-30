@@ -5,15 +5,13 @@ import './globals.css'
 const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
-  display: 'optional',
-  preload: false,
+  display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'optional',
-  preload: false,
+  display: 'swap',
 })
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
