@@ -670,7 +670,7 @@ export const projects: Project[] = [
         slides: [
           {
             title: 'Personal Works Management',
-            description: 'Displays user-generated content, membership benefits, and creation data. Supports work management and membership access, forming a complete immersion-to-conversion loop.',
+            description: 'Displays user-generated content, membership benefits, and creation data. Supports work management and membership access in one unified view.',
             src: '/projects/pixmancer/feature-works.png',
             alt: 'Pixmancer My Works screen',
           },
