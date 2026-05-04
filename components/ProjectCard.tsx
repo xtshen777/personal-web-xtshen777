@@ -14,7 +14,7 @@ export default function ProjectCard({ project, featured = false }: Props) {
         role="article"
         data-category={project.category}
         data-categories={[project.category, ...(project.extraCategories ?? [])].join(',')}
-        className="group relative rounded-2xl overflow-hidden bg-mist aspect-[16/8]"
+        className="group relative rounded-2xl overflow-hidden bg-mist aspect-[4/3] md:aspect-[16/8]"
       >
         <div className="absolute inset-0 gradient-bg opacity-60" />
         {project.coverImage && (
@@ -23,13 +23,13 @@ export default function ProjectCard({ project, featured = false }: Props) {
         )}
         <Link
           href={`/projects/${project.slug}`}
-          className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute inset-0 flex flex-col justify-end p-5 md:p-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{ background: 'linear-gradient(to top, rgba(26,26,46,0.85) 0%, rgba(26,26,46,0.3) 40%, transparent 65%)' }}
         >
           <span className="text-white/60 text-xs uppercase tracking-widest mb-2">
             {project.tagline ?? project.category} · {project.year}
           </span>
-          <h3 className="text-white font-display font-bold text-3xl md:text-4xl mb-2">
+          <h3 className="text-white font-display font-bold text-xl md:text-4xl mb-2">
             {project.title}
           </h3>
           <p className="text-white/75 text-sm md:text-base max-w-2xl line-clamp-2">

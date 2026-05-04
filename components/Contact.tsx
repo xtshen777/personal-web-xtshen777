@@ -6,17 +6,17 @@ const CONTACT_LINKS = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-mist">
+    <section id="contact" className="py-16 md:py-24 bg-mist">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="font-display font-bold text-4xl text-deep mb-4">
+        <h2 className="font-display font-bold text-3xl md:text-4xl text-deep mb-4">
           Let&apos;s <span className="gradient-text">Connect</span>
         </h2>
-        <p className="text-muted text-lg mb-14 max-w-lg">
+        <p className="text-muted text-base md:text-lg mb-10 md:mb-14 max-w-lg">
           Open to new opportunities, collaborations, and interesting conversations.
           Drop me a line.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           <div className="space-y-6">
             {CONTACT_LINKS.map(({ label, value, href }) => (
               <div key={label}>

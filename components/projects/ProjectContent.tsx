@@ -75,7 +75,7 @@ export default function ProjectContent({ sections }: Props) {
 
         if (block.type === 'image-grid') {
           return (
-            <div key={i} className="grid grid-cols-2 gap-4">
+            <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {block.images.map((img, j) => (
                 <figure key={j}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -140,7 +140,7 @@ export default function ProjectContent({ sections }: Props) {
                 <h2 className="font-display font-bold text-2xl text-deep mb-4">{block.heading}</h2>
               )}
               <p className="text-muted leading-relaxed mb-8">{block.intro}</p>
-              <div className={`grid gap-4 mb-6 ${block.problems.length === 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+              <div className={`grid gap-4 mb-6 grid-cols-1 ${block.problems.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
                 {block.problems.map((p, j) => (
                   <div key={j} className="bg-mist rounded-2xl p-6 flex flex-col">
                     {p.stat && <p className="font-display font-bold text-3xl gradient-text mb-3">{p.stat}</p>}
@@ -162,7 +162,7 @@ export default function ProjectContent({ sections }: Props) {
               {block.solutions && block.solutions.length > 0 && (
                 <div className="border-t border-deep/10 pt-6">
                   <p className="text-xs uppercase tracking-widest text-muted/60 mb-4">{block.solutions.length} focus areas</p>
-                  <div className={`grid gap-3 grid-cols-2 ${block.solutions.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
+                  <div className={`grid gap-3 grid-cols-1 sm:grid-cols-2 ${block.solutions.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
                     {block.solutions.map((s, j) => (
                       <div key={j} className="border border-deep/10 rounded-xl p-4 text-sm text-deep font-medium leading-snug">
                         {s.title}
@@ -535,7 +535,7 @@ export default function ProjectContent({ sections }: Props) {
         if (block.type === 'iphone-steps') {
           return (
             <div key={i} className="-mx-6 sm:-mx-16 lg:-mx-32">
-              <div className="grid grid-cols-3 gap-4 px-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4">
                 {block.slides.map((s, j) => (
                   <div key={j} className="bg-mist rounded-2xl p-6 flex flex-col items-center">
                     <div className="w-full mb-5 min-h-[7rem]">

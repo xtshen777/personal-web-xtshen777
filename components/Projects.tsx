@@ -24,7 +24,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 bg-mist">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="font-display font-bold text-4xl text-deep mb-12">
+        <h2 className="font-display font-bold text-3xl md:text-4xl text-deep mb-8 md:mb-12">
           Selected <span className="gradient-text">Work</span>
         </h2>
 

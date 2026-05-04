@@ -12,7 +12,7 @@ export default function ProjectHero({ title, coverImage, coverPosition = 'top', 
 
   if (coverFit === 'contain') {
     return (
-      <div className="w-full aspect-[16/7] overflow-hidden relative">
+      <div className="w-full aspect-[4/3] md:aspect-[16/7] overflow-hidden relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={assetPath(coverImage)} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-90" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -31,7 +31,7 @@ export default function ProjectHero({ title, coverImage, coverPosition = 'top', 
   }
 
   return (
-    <div className="w-full aspect-[16/7] bg-mist overflow-hidden">
+    <div className="w-full aspect-[4/3] md:aspect-[16/7] bg-mist overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={assetPath(coverImage)}

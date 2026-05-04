@@ -15,11 +15,11 @@ export default function About() {
   return (
     <section id="about" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="font-display font-bold text-4xl text-deep mb-16">
+        <h2 className="font-display font-bold text-3xl md:text-4xl text-deep mb-10 md:mb-16">
           About <span className="gradient-text">Me</span>
         </h2>
 
-        <div className="grid md:grid-cols-5 gap-12 mb-16">
+        <div className="grid md:grid-cols-5 gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Bio */}
           <div className="md:col-span-3 space-y-4 text-muted leading-relaxed">
             <p>
