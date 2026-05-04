@@ -6,19 +6,17 @@ A personal portfolio website built with Next.js 14 and Tailwind CSS, showcasing 
 
 **Live site:** https://xtshen777.github.io/personal-web-xtshen777/
 
-## Prerequisites
-
-- Node.js 20 or higher
-- npm 9 or higher
-
 ## Run locally
 
 ```bash
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
 ```
 
-Open http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Run tests
 
@@ -26,30 +24,14 @@ Open http://localhost:3000
 npm test
 ```
 
-## Build
+## Build for production
 
 ```bash
 npm run build
 ```
 
-Output is written to `out/` as static HTML.
+Output is written to `out/` as a static site.
 
 ## Deploy
 
-Deployment is automatic. Push to the `main` branch and GitHub Actions builds and publishes to GitHub Pages.
-
-To enable GitHub Pages:
-1. Go to the repo **Settings → Pages**
-2. Set source to **GitHub Actions**
-
-## Adding project content
-
-Project data lives in `lib/projects.ts`. For each project:
-1. Add cover image to `public/projects/[slug]/cover.jpg`
-2. Fill in the `sections` array with `text`, `image`, or `image-grid` blocks
-3. Add detail images to `public/projects/[slug]/`
-4. Swap the placeholder `<div>` in `ProjectContent.tsx` for `<Image>` tags
-
-## Resume
-
-Place your resume PDF at `public/resume.pdf` to enable the download button.
+Push to `main` and GitHub Actions automatically builds and publishes to GitHub Pages.
