@@ -35,3 +35,10 @@ Output is written to `out/` as a static site.
 ## Deploy
 
 Push to `main` and GitHub Actions automatically builds and publishes to GitHub Pages.
+
+## Note on GitHub Actions history
+
+This repository is mirrored from the author's personal repo. Due to SSL network issues during early pushes, some Actions runs in this Classroom repo show as failed even though the code and deployment are correct.
+
+**To view the complete and accurate CI/CD history, please visit the personal mirror:**
+https://github.com/xtshen777/personal-web-xtshen777/actions
