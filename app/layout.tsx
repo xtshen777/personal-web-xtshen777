@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: 'Product Manager · UX/UI Designer · Marketer',
   icons: {
     icon: [
+      { url: `${base}/favicon-light.png`, type: 'image/png' },
       { url: `${base}/favicon-dark.png`, type: 'image/png', media: '(prefers-color-scheme: dark)' },
     ],
   },
