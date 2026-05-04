@@ -39,7 +39,7 @@ export default function VotrFunctionDiagram() {
         {/* desc: y=20 h=194 center=117 */}
         <rect x="480" y="20" width="445" height="194" rx="10" fill={descBg} stroke={descBorder} strokeWidth="1.5" />
         <text x={tx} y="44"  fontSize="11.5" fontWeight="700" fill={purple}>Official Account:</text>
-        <text x={bx} y="62"  fontSize="11" fill={muted}>•</text><text x={tx} y="62"  fontSize="11" fill={muted}>Verified news from VOTR's official account</text>
+        <text x={bx} y="62"  fontSize="11" fill={muted}>•</text><text x={tx} y="62"  fontSize="11" fill={muted}>Verified news from VOTR&apos;s official account</text>
         <text x={bx} y="79"  fontSize="11" fill={muted}>•</text><text x={tx} y="79"  fontSize="11" fill={muted}>Hourly updates on candidates and parties</text>
         <text x={bx} y="96"  fontSize="11" fill={muted}>•</text><text x={tx} y="96"  fontSize="11" fill={muted}>Voting information (time, location, policies)</text>
         <text x={tx} y="114" fontSize="11.5" fontWeight="700" fill={purple}>Post Creation:</text>
@@ -106,7 +106,7 @@ export default function VotrFunctionDiagram() {
         <line x1="415" y1="737" x2="480" y2="737" stroke={ln} strokeWidth="1.5" />
         {/* desc: y=705 h=65 center=737 */}
         <rect x="480" y="705" width="445" height="65" rx="10" fill={descBg} stroke={descBorder} strokeWidth="1.5" />
-        <text x={bx} y="729" fontSize="11" fill={muted}>•</text><text x={tx} y="729" fontSize="11" fill={muted}>User's information (values, interests, etc.)</text>
+        <text x={bx} y="729" fontSize="11" fill={muted}>•</text><text x={tx} y="729" fontSize="11" fill={muted}>User&apos;s information (values, interests, etc.)</text>
         <text x={bx} y="746" fontSize="11" fill={muted}>•</text><text x={tx} y="746" fontSize="11" fill={muted}>Activity log (posts, comments, likes)</text>
       </svg>
     </div>
