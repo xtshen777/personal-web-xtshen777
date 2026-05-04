@@ -97,7 +97,7 @@ export default function Resume() {
         </div>
 
         <a
-          href="/resume.pdf"
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/resume.pdf`}
           download
           className="inline-flex items-center gap-2 px-8 py-3 rounded-full gradient-bg text-white font-medium hover:opacity-90 transition-opacity"
         >

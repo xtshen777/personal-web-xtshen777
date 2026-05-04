@@ -34,7 +34,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/resume.pdf"
+            href={`${BASE}/resume.pdf`}
             download
             className="text-sm px-4 py-1.5 rounded-full font-medium text-deep gradient-border hover:opacity-80 transition-opacity"
           >
@@ -68,7 +68,7 @@ export default function Navbar() {
               {label}
             </a>
           ))}
-          <a href="/resume.pdf" download className="text-sm font-medium gradient-text">
+          <a href={`${BASE}/resume.pdf`} download className="text-sm font-medium gradient-text">
             Download Resume
           </a>
         </div>
