@@ -1,15 +1,15 @@
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/lib/projects'
 
 describe('projects data', () => {
-  it('has exactly 10 projects', () => {
-    expect(projects).toHaveLength(10)
+  it('has exactly 9 projects', () => {
+    expect(projects).toHaveLength(9)
   })
 
   it('every project has all required fields', () => {
     for (const p of projects) {
       expect(p.slug).toBeTruthy()
       expect(p.title).toBeTruthy()
-      expect(['UX/UI', 'Marketing', 'Art & Design']).toContain(p.category)
+      expect(['UX/UI', 'Product', 'Marketing', 'Art & Design']).toContain(p.category)
       expect(p.year).toBeTruthy()
       expect(p.role).toBeTruthy()
       expect(p.tools.length).toBeGreaterThan(0)
@@ -34,18 +34,18 @@ describe('projects data', () => {
   })
 
   it('getAdjacentProjects returns prev and next', () => {
-    const { prev, next } = getAdjacentProjects('floraverse')
-    expect(prev?.slug).toBe('menobook')
-    expect(next?.slug).toBe('eyeconic')
+    const { prev, next } = getAdjacentProjects('eyeconic')
+    expect(prev?.slug).toBe('floraverse')
+    expect(next?.slug).toBe('pixmancer')
   })
 
-  it('getAdjacentProjects returns null prev for first project', () => {
-    const { prev } = getAdjacentProjects('menobook')
+  it('getAdjacentProjects returns null prev for first visible project', () => {
+    const { prev } = getAdjacentProjects('floraverse')
     expect(prev).toBeNull()
   })
 
-  it('getAdjacentProjects returns null next for last project', () => {
-    const { next } = getAdjacentProjects('selected-works')
+  it('getAdjacentProjects returns null next for last visible project', () => {
+    const { next } = getAdjacentProjects('votrnet')
     expect(next).toBeNull()
   })
 

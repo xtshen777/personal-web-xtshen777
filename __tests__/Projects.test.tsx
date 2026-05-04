@@ -7,18 +7,18 @@ describe('Projects', () => {
     expect(screen.getAllByRole('article').length).toBeGreaterThan(0)
   })
 
-  it('renders all four filter buttons', () => {
+  it('renders all filter buttons', () => {
     render(<Projects />)
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'UX/UI' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Product' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Marketing' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Art & Design' })).toBeInTheDocument()
   })
 
-  it('filtering by UX/UI shows fewer cards than All', () => {
+  it('filtering by Marketing shows fewer cards than All', () => {
     render(<Projects />)
     const allCount = screen.getAllByRole('article').length
-    fireEvent.click(screen.getByRole('button', { name: 'UX/UI' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Marketing' }))
     const filteredCount = screen.getAllByRole('article').length
     expect(filteredCount).toBeLessThan(allCount)
   })

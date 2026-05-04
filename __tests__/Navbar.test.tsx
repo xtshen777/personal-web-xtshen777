@@ -17,9 +17,9 @@ describe('Navbar', () => {
 
   it('nav links point to correct anchors', () => {
     render(<Navbar />)
-    expect(screen.getByText('About').closest('a')).toHaveAttribute('href', '#about')
-    expect(screen.getByText('Projects').closest('a')).toHaveAttribute('href', '#projects')
-    expect(screen.getByText('Resume').closest('a')).toHaveAttribute('href', '#resume')
-    expect(screen.getByText('Contact').closest('a')).toHaveAttribute('href', '#contact')
+    expect(screen.getByText('About').closest('a')).toHaveAttribute('href', '/#about')
+    expect(screen.getByText('Projects').closest('a')).toHaveAttribute('href', '/#projects')
+    expect(screen.getByText('Resume').closest('a')).toHaveAttribute('href', '/#resume')
+    expect(screen.getByText('Contact').closest('a')).toHaveAttribute('href', '/#contact')
   })
 })
