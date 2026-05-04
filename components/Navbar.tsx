@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const NAV_LINKS = [
-  { label: 'About', href: '/#about' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Resume', href: '/#resume' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'About', href: `${BASE}/#about` },
+  { label: 'Projects', href: `${BASE}/#projects` },
+  { label: 'Resume', href: `${BASE}/#resume` },
+  { label: 'Contact', href: `${BASE}/#contact` },
 ]
 
 export default function Navbar() {
