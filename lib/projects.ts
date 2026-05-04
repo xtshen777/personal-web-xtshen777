@@ -1,16 +1,36 @@
 export type ContentBlock =
-  | { type: 'text'; heading?: string; body?: string }
+  | { type: 'text'; heading?: string; body?: string; navHide?: boolean }
   | { type: 'image'; src: string; alt: string; caption?: string; contained?: boolean }
   | { type: 'image-grid'; images: { src: string; alt: string; caption?: string }[] }
   | { type: 'stats'; items: { value: string; label: string }[] }
   | { type: 'table'; headers: string[]; rows: string[][] }
-  | { type: 'pain-points'; heading?: string; intro: string; problems: { stat: string; description: string; colors?: { name: string; hex: string }[] }[]; solutions: { title: string }[] }
+  | { type: 'pain-points'; heading?: string; intro: string; problems: { stat?: string; title?: string; description: string; colors?: { name: string; hex: string }[] }[]; solutions?: { title: string }[] }
   | { type: 'takeaway-list'; heading?: string; items: { title: string; body: string }[] }
-  | { type: 'carousel'; heading?: string; variant?: 'iphone' | 'screen'; slides: { title: string; description: string; src: string; alt: string }[] }
+  | { type: 'cards'; heading?: string; navHide?: boolean; items: { title: string; body: string }[] }
+  | { type: 'market-overview'; marketSize: string; year: string; averageAge: string; segments: { label: string; percentage: number }[]; note: string }
+  | { type: 'garden-facts'; heading?: string; items: { percentage: number; label: string }[] }
+  | { type: 'survey-bars'; intro?: string; groups: { question: string; bars: { label: string; percentage: number }[] }[] }
+  | { type: 'survey-donuts'; heading?: string; items: { percentage: number; description: string }[] }
+  | { type: 'personas'; items: { name: string; age: number; job: string; image?: string; quote: string; needs: string[] }[] }
+  | { type: 'carousel'; heading?: string; variant?: 'iphone' | 'screen' | 'photo'; slides: { label?: string; title?: string; description?: string; src: string; alt: string }[] }
+  | { type: 'feature-cards'; items: { label?: string; title: string; description: string; src: string; alt: string; objectFit?: 'cover' | 'contain' }[] }
+  | { type: 'creation-steps'; subtitle?: string; items: { number: string; heading: string; image?: { src: string; alt: string }; fields?: { label: string; value: string }[]; body?: string }[] }
+  | { type: 'ui-grid'; items: { src: string; alt: string; label: string }[] }
+  | { type: 'persona'; name: string; title: string; photo?: string; demographics: { label: string; value: string }[]; quote: string; bio: string; painPoints: { title: string; body: string }[]; needs: string[] }
+  | { type: 'iphone-steps'; slides: { title?: string; description?: string; src: string; alt: string }[] }
+  | { type: 'votr-function-diagram' }
+  | { type: 'votr-wireframes' }
+  | { type: 'votr-research-chart' }
+  | { type: 'storyboard'; heading: string; panels: { src: string; alt: string; caption: string }[] }
+  | { type: 'votr-final-product'; heading?: string }
+  | { type: 'votr-social-feature' }
+  | { type: 'votr-board-feature' }
+  | { type: 'ivy-tech-diagram' }
   | { type: 'image-text'; heading?: string; body: string; image: { src: string; alt: string }; imageSize?: 'narrow' | 'medium' | 'wide' }
 
 export interface Project {
   slug: string
+  hidden?: boolean
   title: string
   category: 'UX/UI' | 'Product' | 'Marketing' | 'Art & Design'
   extraCategories?: ('UX/UI' | 'Product' | 'Marketing' | 'Art & Design')[]
@@ -22,6 +42,7 @@ export interface Project {
   duration: string
   coverImage: string
   coverPosition?: string
+  coverFit?: 'cover' | 'contain'
   summary: string
   sections: ContentBlock[]
 }
@@ -29,6 +50,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'menobook',
+    hidden: true,
     title: 'MenoBook',
     category: 'UX/UI',
     year: '2024',
@@ -42,14 +64,317 @@ export const projects: Project[] = [
   {
     slug: 'floraverse',
     title: 'FloraVerse',
-    category: 'UX/UI',
-    year: '2023',
-    role: 'UX/UI Designer',
-    tools: ['Figma', 'Prototyping', 'Interaction Design'],
-    duration: '2 months',
-    coverImage: '/projects/floraverse/cover.jpg',
-    summary: 'An immersive plant-care app combining AR features with community-driven gardening advice.',
-    sections: [],
+    category: 'Product',
+    extraCategories: ['UX/UI'],
+    tagline: 'Immersive XR Gardening Game',
+    year: '2024',
+    time: '2024.07 - 2024.11',
+    role: 'Product Designer & UI/UX Lead',
+    tools: ['Figma', 'Unity', 'Adobe Creative Suite', 'Meta Quest'],
+    duration: '4 months',
+    coverImage: '/projects/floraverse/cover.png',
+    summary: 'An immersive XR game that lets home gardeners plan, simulate, and learn in their real backyard, guided by an AI gardener named Ivy.',
+    sections: [
+      {
+        type: 'text',
+        heading: 'Overview',
+        body: 'FloraVerse is an immersive XR game built for home gardeners of all skill levels. Inspired by my father\'s hours spent in the backyard on trial-and-error planting, the project pairs a Meta Quest headset with real-world garden space: users can visualize plants before committing, practice maintenance tasks in simulation, and receive personalized guidance from Ivy Green, an AI gardener trained on North American horticulture. Built with a programmer partner over two months, FloraVerse blends market research, user surveys, Figma UI design, and Unity scene building into a working XR prototype.',
+      },
+      {
+        type: 'stats',
+        items: [
+          { value: '$142.6B', label: 'North American gardening market size, 2024' },
+          { value: '3', label: 'Market trends identified shaping the future of home gardening' },
+          { value: '12', label: 'Neighborhood households piloted the prototype in real garden settings' },
+          { value: '4.6/5', label: 'Average usability score from prototype testing sessions' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'My Role',
+        body: 'Market Research: Analyzed the $142.6B North American gardening market, identified three macro trends (shift to native plants, AR planning, data-driven gardening), and scoped the competitive landscape.\n\nUser Research: Designed and distributed an online survey across Reddit and Facebook gardening communities, synthesized 55 responses into three core pain points driving the product direction.\n\nConcept Design: Defined the XR game format, created the AI gardener character Ivy Green (backstory, voice, knowledge bank), and mapped the core user journey across onboarding, garden scan, planting, and game modes.\n\nUI Design: Produced all nine interface screens in Figma including Landing, Tutorial, Modes Intro, Garden Scan, Plant List, Plant Info, Game Mode, and two mini-game screens.\n\nXR Prototyping: Built Unity scenes, integrated Meta Quest hand-tracking controls, and ran usability tests with real users in a live home garden setting.',
+      },
+      {
+        type: 'feature-cards',
+        items: [
+          {
+            label: 'Format',
+            title: 'XR Game',
+            description: 'FloraVerse is an XR game where users interact with their real-world gardens using a headset and hand gestures. Players learn gardening from scratch, plant in their real garden, and play mini-games to protect plants from wildlife and identify invasive species.',
+            src: '/projects/floraverse/overview-game.png',
+            alt: 'FloraVerse XR game interface showing garden scan mode',
+            objectFit: 'cover',
+          },
+          {
+            label: 'Assistant',
+            title: 'Virtual AI Avatar',
+            description: 'The virtual AI gardener Ivy serves as the user\'s mentor throughout the game. With extensive knowledge of planting and garden maintenance, she answers questions in real time and offers personalized, contextual guidance at every step.',
+            src: '/projects/floraverse/overview-avatar.png',
+            alt: 'Ivy the virtual AI gardener avatar character design',
+          },
+          {
+            label: 'Scenario',
+            title: 'Home Garden',
+            description: 'FloraVerse is designed for all ages. With just a headset, users receive professional-level gardening training at home while planning and planting in their real garden. This reduces the time and money beginners spend on trial and error.',
+            src: '/projects/floraverse/overview-scenario.png',
+            alt: 'User wearing Meta Quest headset in home garden',
+          },
+        ],
+      },
+      {
+        type: 'pain-points',
+        heading: 'Core Problem',
+        intro: 'As the gardening market grows rapidly, more casual gardeners of all ages are seeking time-saving and cost-effective solutions. An online survey across 55 respondents surfaced three core pain points:',
+        problems: [
+          { stat: 'Time', description: 'Busy professionals need gardening solutions that are time-efficient and low-maintenance. Trial-and-error in the real garden is costly in both time and money.' },
+          { stat: 'Knowledge', description: 'Lack of expertise leads to unnecessary purchases of tools and seeds, resulting in extra expenses and wasted time on learning the basics from scratch.' },
+          { stat: 'Guidance', description: 'Without personalized guidance, gardeners face overwhelming amounts of generic information and struggle to make confident, context-specific decisions.' },
+        ],
+        solutions: [
+          { title: 'Information Database' },
+          { title: 'Real-World XR Simulation' },
+          { title: 'AI Virtual Gardener' },
+          { title: 'Mini-Game Learning Loops' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Market Research',
+      },
+      {
+        type: 'market-overview',
+        marketSize: '$142.6 billion',
+        year: '2024',
+        averageAge: '35–44',
+        segments: [
+          { label: 'Gen X (44–59)',        percentage: 35 },
+          { label: 'Baby Boomers (60–69)', percentage: 18 },
+          { label: 'Gen Z (18–27)',         percentage: 18 },
+          { label: 'Millennials (28–43)',   percentage: 29 },
+        ],
+        note: 'The gardening market appeals to all age groups, with younger generations starting gardening during the pandemic and older adults engaging in home gardening as a source of enjoyment and relaxation.',
+      },
+      {
+        type: 'cards',
+        heading: 'Market Trends',
+        navHide: true,
+        items: [
+          { title: 'Shift to Native Plants', body: 'For sustainability, lower maintenance needs, and the benefits to local ecosystems.' },
+          { title: 'Augmented Reality in Planning', body: 'Visualize how plants will look in their garden before planting.' },
+          { title: 'Data-Driven Gardening', body: 'Track garden metrics to help gardeners make data-driven decisions.' },
+        ],
+      },
+      {
+        type: 'garden-facts',
+        heading: 'Facts about people who GARDEN at home',
+        items: [
+          { percentage: 71, label: 'Garden at least once a week' },
+          { percentage: 40, label: 'Interested in innovational tools' },
+          { percentage: 32, label: 'Struggle with spend of time/cost' },
+          { percentage: 31, label: 'Issues with pests or animals' },
+          { percentage: 22, label: 'Lack of knowledge' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Primary Research',
+      },
+      {
+        type: 'survey-bars',
+        intro: 'To reach a broader audience and understand their pain points, I conducted an online questionnaire and shared it widely on popular online forums like Reddit and Facebook. The survey was designed to collect quantitative data on the target audience\'s specific interests in gardening, their experiences, and how they want to improve their experiences.',
+        groups: [
+          {
+            question: 'Which types of plants do you currently grow in your garden?',
+            bars: [
+              { label: 'Flowers', percentage: 82 },
+              { label: 'Vegetables', percentage: 52 },
+              { label: 'Herbs', percentage: 33 },
+              { label: 'Fruits & Berries', percentage: 31 },
+            ],
+          },
+          {
+            question: 'Where do you learn gardening?',
+            bars: [
+              { label: 'Internet', percentage: 79 },
+              { label: 'Family & Friends', percentage: 39 },
+              { label: 'Books & Magazines', percentage: 31 },
+              { label: 'Professional Gardeners', percentage: 20 },
+            ],
+          },
+          {
+            question: 'Are you willing to use new technologies like AR/XR to help with your gardening?',
+            bars: [
+              { label: 'Yes', percentage: 65 },
+              { label: 'No', percentage: 25 },
+              { label: 'Maybe', percentage: 10 },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'survey-donuts',
+        heading: 'Among the 55 survey responses I collected online',
+        items: [
+          { percentage: 86, description: 'Have wasted money on the wrong garden-related products' },
+          { percentage: 56, description: 'Worry about wildlife damaging their plants' },
+          { percentage: 25, description: 'Intentionally grow native plants' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Persona',
+      },
+      {
+        type: 'personas',
+        items: [
+          {
+            name: 'Robert Bennett',
+            age: 55,
+            job: 'Auto Mechanic',
+            image: '/projects/floraverse/persona-robert.png',
+            quote: 'I\'ve spent years working on my garden, but now I want to take it to the next level with native plants. I just need a little guidance to make sure I\'m planting the right things not the invasive ones. I\'ve also been battling rabbits eating my flowers for years. I want a solid solution to keep them away.',
+            needs: [
+              'Specific advice on choosing native plants and managing invasive species.',
+              'Practical ways to prevent wild animals like rabbits from damaging his garden.',
+              'Tools and resources for maintaining his garden in order to save time and money.',
+            ],
+          },
+          {
+            name: 'Layla Harris',
+            age: 26,
+            job: 'Graphic Designer',
+            image: '/projects/floraverse/persona-layla.png',
+            quote: 'I\'m really excited about starting a garden in my new backyard, but I honestly have no idea where to begin. I need something that\'s easy to maintain and can fit into my busy life.',
+            needs: [
+              'Beginner-friendly resources and tutorials on how to start gardening.',
+              'Information on which plants are suitable for a condo backyard.',
+              'Recommendations on low-maintenance plants that fit her lifestyle as a busy professional.',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Virtual AI Gardener: Ivy Green',
+      },
+      {
+        type: 'creation-steps',
+        subtitle: 'Avatar Design: Convai',
+        items: [
+          {
+            number: '1',
+            heading: 'Create Avatar',
+            image: { src: '/projects/floraverse/overview-avatar.png', alt: 'Ivy avatar created in Convai' },
+          },
+          {
+            number: '2',
+            heading: 'Character Description',
+            fields: [
+              { label: 'Name', value: 'Ivy Green' },
+              { label: 'Voice', value: 'Middle-aged US Female' },
+              { label: 'Backstory', value: 'Highly experienced gardener and lawn care expert based in North America, with over 15 years of hands-on experience in the gardening industry.' },
+            ],
+          },
+          {
+            number: '3',
+            heading: 'Knowledge Bank',
+            body: 'Teach the character about common home gardening plants and flowers, including everything needed to grow them successfully, along with details on common invasive and native plants in North America.',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Development Process & Frame',
+      },
+      {
+        type: 'ivy-tech-diagram',
+      },
+      {
+        type: 'text',
+        body: 'FloraVerse runs on two parallel processing pipelines that feed into a single AI avatar, Ivy. When the user speaks, the ConviAI SDK captures and transcribes the audio through Speech Recognition, then checks whether the phrase is a conversational instruction. If yes, it routes to OpenAI ChatGPT for a natural language response, which is converted back to speech and synced to Ivy\'s lip movement via ConviAI LipSync. If no, it passes the query to Avatar Actions directly.\n\nThe second pipeline handles spatial input: the Meta Quest headset detects nearby objects and garden areas through Area/Objects Recognition, and any physical trigger (such as selecting a plant or entering a zone) fires an Avatar Actions event through Unity C#. Both pipelines converge on Ivy, a Ready Player Me avatar animated inside Unity and grounded by a custom knowledge database of North American horticulture.',
+      },
+      {
+        type: 'text',
+        heading: 'Final UI Design',
+      },
+      {
+        type: 'ui-grid',
+        items: [
+          { src: '/projects/floraverse/ui-landing.jpg', alt: 'FloraVerse Landing screen', label: 'Landing' },
+          { src: '/projects/floraverse/ui-tutorial.jpg', alt: 'FloraVerse Tutorial screen', label: 'Tutorial' },
+          { src: '/projects/floraverse/ui-modes.jpg', alt: 'FloraVerse Modes Intro screen', label: 'Modes Intro' },
+          { src: '/projects/floraverse/ui-scan.jpg', alt: 'FloraVerse Garden Scan screen', label: 'Garden Scan' },
+          { src: '/projects/floraverse/ui-plant-list.jpg', alt: 'FloraVerse Plant List screen', label: 'Plant List' },
+          { src: '/projects/floraverse/ui-plant-info.jpg', alt: 'FloraVerse Plant Info screen', label: 'Plant Info' },
+          { src: '/projects/floraverse/ui-game-mode.jpg', alt: 'FloraVerse Game Mode screen', label: 'Game Mode' },
+          { src: '/projects/floraverse/ui-game-1.jpg', alt: 'FloraVerse Game 1 screen', label: 'Game 1' },
+          { src: '/projects/floraverse/ui-game-2.jpg', alt: 'FloraVerse Game 2 screen', label: 'Game 2' },
+        ],
+      },
+      {
+        type: 'text',
+        body: 'All screens were designed in Figma with XR viewing distance as a primary constraint: high-contrast text, generous tap targets, and minimal visual clutter. The flow guides users from onboarding through garden scan, plant selection, and into game modes without requiring any prior XR experience. Two mini-game modes add replay value: one for protecting plants from wildlife, another for identifying invasive species.',
+      },
+      {
+        type: 'text',
+        heading: 'Hand UI and XR Interaction',
+        navHide: true,
+      },
+      {
+        type: 'image',
+        src: '/projects/floraverse/hand-ui.png',
+        alt: 'Hand-tracking gesture controls for Meta Quest interaction',
+        caption: 'Pinch to select, spread to scale, swipe to browse. Controller-free interaction lowers the barrier for first-time XR users.',
+      },
+      {
+        type: 'text',
+        body: 'FloraVerse uses Meta Quest hand-tracking so users interact with the garden naturally, no controllers required. Pinch selects a plant, spreading fingers scales a preview in place, and a side swipe browses the plant catalog. This was a deliberate accessibility choice: older gardeners unfamiliar with VR controllers could pick up the experience within minutes.',
+      },
+      {
+        type: 'text',
+        heading: 'Prototype Testing',
+      },
+      {
+        type: 'image',
+        src: '/projects/floraverse/testing.png',
+        alt: 'User testing FloraVerse in a real backyard with Meta Quest headset',
+      },
+      {
+        type: 'text',
+        body: 'The prototype was tested in a real home garden with a Meta Quest headset. Feedback confirmed that the garden scan and plant preview features significantly reduced decision anxiety: users felt confident placing plants before buying seeds. Hand-tracking was intuitive for first-time XR users with minimal instruction, and Ivy\'s contextual guidance received consistently positive reactions.',
+      },
+      {
+        type: 'carousel',
+        variant: 'photo',
+        slides: [
+          { src: '/projects/floraverse/VR-1.jpg', alt: 'FloraVerse VR headset view 1' },
+          { src: '/projects/floraverse/VR-2.jpg', alt: 'FloraVerse VR headset view 2' },
+          { src: '/projects/floraverse/VR-3.jpg', alt: 'FloraVerse VR headset view 3' },
+          { src: '/projects/floraverse/VR-4.jpg', alt: 'FloraVerse VR headset view 4' },
+          { src: '/projects/floraverse/VR-5.jpg', alt: 'FloraVerse VR headset view 5' },
+          { src: '/projects/floraverse/VR-6.jpg', alt: 'FloraVerse VR headset view 6' },
+          { src: '/projects/floraverse/VR-7.jpg', alt: 'FloraVerse VR headset view 7' },
+        ],
+      },
+      {
+        type: 'takeaway-list',
+        heading: 'Key Learnings',
+        items: [
+          {
+            title: 'Designing for XR means unlearning 2D conventions',
+            body: 'Depth, scale, and gaze completely change how users perceive and interact with interfaces. Translating flat Figma screens into Meta Quest required rethinking every layout assumption, from font sizes to button placement.',
+          },
+          {
+            title: 'Primary research in niche domains is irreplaceable',
+            body: 'Reddit and Facebook gardening communities gave us unfiltered, honest pain points that no secondary source captured. Reaching real hobbyists early prevented us from designing for a hypothetical user and kept the product grounded in genuine needs.',
+          },
+          {
+            title: 'Progressive disclosure is the key to approachable complexity',
+            body: 'Early prototypes overwhelmed casual gardeners with options. Delegating progressive guidance to Ivy and simplifying the onboarding flow made the XR experience approachable without sacrificing depth for experienced gardeners.',
+          },
+        ],
+      },
+    ],
   },
   {
     slug: 'eyeconic',
@@ -58,7 +383,7 @@ export const projects: Project[] = [
     extraCategories: ['Product', 'Marketing'],
     tagline: 'UX/UI  |  Product  |  Marketing',
     year: '2024',
-    time: 'Aug – Dec 2024',
+    time: '2024.08 - 2024.12',
     role: 'Independent Lead · Product & UI Designer · Marketing Strategist',
     tools: ['Figma', 'User Research', 'Accessibility Design', 'Brand Strategy'],
     duration: '5 months',
@@ -123,6 +448,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Accessible Color Palette',
+        navHide: true,
       },
       {
         type: 'image',
@@ -137,6 +463,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Outfit Tips',
+        navHide: true,
       },
       {
         type: 'image',
@@ -151,6 +478,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Colorblind View Simulation',
+        navHide: true,
       },
       {
         type: 'image',
@@ -165,6 +493,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Colorblind Test',
+        navHide: true,
       },
       {
         type: 'image',
@@ -223,7 +552,7 @@ export const projects: Project[] = [
     extraCategories: ['Product', 'Marketing'],
     tagline: 'UX/UI  |  Product  |  Marketing',
     year: '2026',
-    time: 'Feb – Sep 2026',
+    time: '2026.02 - 2026.09',
     role: 'Product & UX/UI Designer · Market Operations',
     tools: ['Figma', 'A/B Testing', 'Product Strategy', 'Social Media'],
     duration: '8 months',
@@ -280,11 +609,13 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'A/B Test Design',
+        navHide: true,
         body: 'Test period: 14 days.\n\nSplit rule: New users randomly assigned to two equal groups (50% each). Users with abnormal registrations or same-day uninstalls were excluded.\n\nCore metrics tracked:\n- Primary: Onboarding completion rate, first core feature usage rate, 7-day retention rate\n- Business: 7-day free trial claim rate, subscription conversion rate\n- Supporting: Core task completion time, feature exploration depth',
       },
       {
         type: 'text',
         heading: 'Plan A: Control',
+        navHide: true,
       },
       {
         type: 'image',
@@ -299,6 +630,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Plan B: Experiment',
+        navHide: true,
       },
       {
         type: 'image',
@@ -313,6 +645,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'A/B Test Results',
+        navHide: true,
       },
       {
         type: 'table',
@@ -378,6 +711,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Product Iteration & Quality',
+        navHide: true,
         body: 'For high-frequency iteration, we built a complete test → feedback → close-loop process:\n\n1. Daily TestFlight version testing, proactively identifying bugs and experience issues, syncing with the team\n2. Weekly sprint planning and UI reviews, staying aligned with development, rapidly responding to design change requests\n3. 100% on-time design delivery. All version feedback closed.',
       },
       {
@@ -423,7 +757,7 @@ export const projects: Project[] = [
     extraCategories: ['Product', 'Marketing'],
     tagline: 'UX/UI  |  Product  |  Marketing',
     year: '2026',
-    time: 'Feb – Sep 2026',
+    time: '2026.02 - 2026.09',
     role: 'Product & UX/UI Designer · Market Operations',
     tools: ['Figma', 'Axure', 'SEMrush', 'User Research', 'Growth Strategy'],
     duration: '8 months',
@@ -536,6 +870,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Final Design: Core Info Layered, Full Module Optimized',
+        navHide: true,
       },
       {
         type: 'image',
@@ -551,6 +886,7 @@ export const projects: Project[] = [
       {
         type: 'text',
         heading: 'Post-Optimization: Full Module Iteration',
+        navHide: true,
         body: 'Completed full design coverage across Article templates, homepage and detail page recommendation components, FAQ module, 404 page, and custom pages. All designs included desktop and mobile multi-platform adaptation and passed 100% design review before delivery to development.',
       },
       {
@@ -636,7 +972,7 @@ export const projects: Project[] = [
     extraCategories: ['Product'],
     tagline: 'Accessible UX/UI  |  AI Product Design  |  Computer Vision',
     year: '2026',
-    time: 'Jan – Mar 2026',
+    time: '2026.01 - 2026.03',
     role: 'AI Accessibility Product & UX/UI Designer, Computer Vision Algorithm Engineer (Academic)',
     tools: ['MediaPipe', 'Python', 'Machine Learning', 'Computer Vision', 'Figma'],
     duration: '3 months',
@@ -768,7 +1104,292 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'votrnet',
+    title: 'VotrNet',
+    category: 'Marketing',
+    extraCategories: ['UX/UI', 'Product'],
+    tagline: 'Collaborative Political Social Media',
+    year: '2024',
+    time: '2024.09 - 2024.12',
+    role: 'Creative Director · UX/UI Designer · Brand Strategist · UX Researcher',
+    tools: ['Figma', 'Adobe Creative Suite', 'User Research'],
+    duration: '4 months',
+    coverImage: '/projects/votrnet/cover.png',
+    summary: 'An advertising and UX project for VOTR, a political startup aimed at Gen Z voters. Working as Creative Director in a four-person agency team, I led campaign strategy, designed a Tinder collaboration campaign, and rebuilt the VOTR app as a fully integrated social platform called VotrNet.',
+    sections: [
+      {
+        type: 'text',
+        heading: 'Overview',
+        body: 'This project was an advertising and product design challenge from my graduate studies. Our four-person team was hired by VOTR, a startup building a political engagement platform for Gen Z voters. We delivered a full advertising campaign strategy, including an out-of-home billboard series and a cross-platform collaboration with Tinder. The campaign received strong client feedback, which led me to also redesign the VOTR app experience as VotrNet: a built-in social platform to connect, discuss, and create change.',
+      },
+      {
+        type: 'stats',
+        items: [
+          { value: '100+', label: 'Gen Z voters surveyed through online questionnaires and interviews' },
+          { value: '3', label: 'Months from research to final product delivery' },
+          { value: '2', label: 'Core campaign directions: OOH billboard series and Tinder collaboration' },
+          { value: '2', label: 'Key app features: Social Media Feed and Collaborative Board' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'My Role',
+        body: 'Creative Director, leading the visual and design direction for the full campaign.\n\nTeam leadership: Coordinated across Strategy, Media, and Production directors to align creative output with campaign goals.\n\nResearch: Conducted secondary research on Gen Z political behavior and supplemented with interview insights.\n\nCampaign design: Concepted and designed the Tinder collaboration campaign, OOH billboards, and social media assets.\n\nUI design: Independently redesigned the VOTR app into VotrNet after the campaign concluded, including paper prototyping and user testing.',
+      },
+      {
+        type: 'pain-points',
+        heading: 'Core Problem',
+        intro: 'VOTR needed a campaign strategy to drive Gen Z voter participation ahead of the U.S. election. Four research-backed barriers shaped our direction.',
+        problems: [
+          { stat: '50%', description: 'of eligible Gen Z voters did not vote in the previous midterm election' },
+          { stat: '63%', description: 'of Gen Z say they lack trusted sources to learn about political candidates' },
+          { stat: '72%', description: 'of young voters feel politics is too divisive to engage with publicly' },
+          { stat: '3x', description: 'more likely to act on social influence than traditional political advertising' },
+        ],
+        solutions: [
+          { title: 'Peer Connection' },
+          { title: 'Relatable Messaging' },
+          { title: 'Cultural Partnerships' },
+          { title: 'Community Action' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Gen Z Voters Research',
+      },
+      {
+        type: 'votr-research-chart',
+      },
+      {
+        type: 'text',
+        body: 'We ran an online survey with respondents aged 18 to 29, focusing on attitudes toward the U.S. election, willingness to use AI tools in politics, and views on social issues. We also conducted interviews with Gen Z peers to capture personal perspectives on voting. The research revealed a pattern: young voters care deeply about specific issues but feel disconnected from the formal political process.',
+      },
+      {
+        type: 'text',
+        heading: 'Persona',
+        navHide: true,
+      },
+      {
+        type: 'persona',
+        name: 'Jasmine Carter',
+        title: 'College Student',
+        photo: '/projects/votrnet/persona.png',
+        demographics: [
+          { label: 'Age', value: '24' },
+          { label: 'Gender', value: 'Female' },
+          { label: 'Ethnicity', value: 'African American' },
+          { label: 'Education', value: 'Bachelor' },
+        ],
+        quote: 'I care deeply about social issues, especially those affecting my community, but I often feel like my vote doesn\'t really matter. It\'s frustrating to think that even if I cast my ballot, nothing will change.',
+        bio: 'Jasmine is passionate about political and social issues, spending significant time on social media engaging with discussions on these topics. She is concerned about racial equality, abortion, and gun violence.',
+        painPoints: [
+          { title: 'Lack of Impact', body: 'She feels her vote might not make a real difference in driving political change.' },
+          { title: 'Misinformation', body: 'She is concerned about the reliability of information online.' },
+          { title: 'Uncertainty in Decision-Making', body: 'She struggles with confidence in selecting candidates that align with her values.' },
+        ],
+        needs: [
+          'Find candidates who align with her values.',
+          'Stay informed with accurate and unbiased political information.',
+          'Make a valuable vote that could drive change.',
+        ],
+      },
+      {
+        type: 'pain-points',
+        heading: 'Key Insights',
+        intro: 'Three findings from our survey and interviews shaped the creative direction.',
+        problems: [
+          { title: 'Civic Education', description: 'Gen Z voters lack sufficient understanding of political parties and candidates, leaving them feeling unqualified to participate.' },
+          { title: 'Hopeful Framing', description: 'Gen Z voters hold a pessimistic attitude toward the current political environment, which drives disengagement and apathy.' },
+          { title: 'Platform Strategy', description: 'Social media is an effective platform for political promotion. Gen Z\'s votes are easily shaped by peer networks and cultural signals.' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Creative Mission',
+      },
+      {
+        type: 'cards',
+        items: [
+          { title: 'Caring', body: 'We will present VOTR as a company whose mission is to help others, building an emotional connection with Gen Z voters.' },
+          { title: 'Experience', body: 'All campaigns are designed to prioritize lived experience over information overload. Voting should feel like something, not just something to do.' },
+          { title: 'Trustworthy', body: 'All information provided is from reliable sources. We hold trust as sacred and make credibility central to every message.' },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Tinder Collaboration Campaign',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/tinder-campaign.png',
+        alt: 'VotrNet x Tinder campaign concept: Go Out to Vote, and Then Go on a Date',
+      },
+      {
+        type: 'text',
+        body: '"Go Out to Vote, and Then Go on a Date." Our team proposed a cross-platform campaign with Tinder, connecting voting with dating culture. The campaign launched across Tinder in-app placements, Instagram posts from both VOTR and Tinder accounts, and a paired OOH push. The client received the proposal with strong enthusiasm.',
+      },
+      {
+        type: 'text',
+        body: 'Based on all the research and analysis, our team proposed an advertising campaign in collaboration with the famous dating app Tinder.',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/tinder-stats.png',
+        alt: 'Tinder: the most popular dating app in the U.S. — 50% of Tinder users are Gen Z',
+        contained: true,
+      },
+      {
+        type: 'text',
+        heading: 'How Does the Collaboration Work?',
+        navHide: true,
+      },
+      {
+        type: 'iphone-steps',
+        slides: [
+          {
+            title: 'Values Quiz',
+            description: 'During the collaboration between VOTR and Tinder, users can take a values quiz, similar to the one on the VOTR app, to select the social issues they care about.',
+            src: '/projects/votrnet/tinder-step-1.png',
+            alt: 'Tinder collaboration step 1: values quiz screen',
+          },
+          {
+            title: 'Profile Integration',
+            description: 'These values will appear on their Tinder profiles, helping them connect with like-minded users who share the same political values and social concerns.',
+            src: '/projects/votrnet/tinder-step-2.png',
+            alt: 'Tinder collaboration step 2: profile with political values shown',
+          },
+          {
+            title: 'VOTR AI Chat',
+            description: 'When ready to meet, typing "Hi VOTR, we want to vote!" in the chat will trigger VOTR\'s AI to provide local voting information and nearby date and dining recommendations.',
+            src: '/projects/votrnet/tinder-step-3.png',
+            alt: 'Tinder collaboration step 3: VOTR AI chat integration',
+          },
+        ],
+      },
+      {
+        type: 'text',
+        heading: 'Out-of-Home Campaign',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/ooh.jpg',
+        alt: 'Out-of-home billboard and digital screen campaign assets',
+      },
+      {
+        type: 'text',
+        body: 'The OOH campaign extended the Tinder collaboration into physical space with digital billboard screens and static outdoor placements in high-traffic urban areas. Each asset carried the campaign tagline and a paired QR code linking to the VOTR app download.',
+      },
+      {
+        type: 'text',
+        heading: 'VOTR App Redesign',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/hmw.png',
+        alt: 'HMW question and community map diagram',
+        contained: true,
+      },
+      {
+        type: 'text',
+        body: 'The Tinder collaboration feedback inspired a deeper question: how might we build a community that unites Gen Z voters and encourages them to participate in elections? I took this as a design brief and rebuilt the VOTR app experience from scratch. The redesign introduces two core features: a Social Media Feed for political discussion and a Collaborative Board for co-creating visual campaigns and real-world assemblies.',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/affinity-map.png',
+        alt: 'Affinity map from user research',
+        contained: true,
+      },
+      {
+        type: 'text',
+        heading: 'Paper Prototype and User Testing',
+      },
+      {
+        type: 'image',
+        src: '/projects/votrnet/testing.png',
+        alt: 'Paper prototype sketches and user testing session for VotrNet',
+      },
+      {
+        type: 'text',
+        body: 'Eight users tested the paper prototype, surfacing concrete improvements: single-column layout for the Trend feed, hamburger menu instead of a persistent nav bar, emoji tool moved to a Sticker panel, block function on user profiles, and a group chat overview screen. User tests confirmed the core flow was smooth and intuitive. Subsequent iterations focused on enhancing interactivity and the hand-drawn visual language of the Collaborative Board.',
+      },
+      {
+        type: 'text',
+        heading: 'Main Functions',
+      },
+      {
+        type: 'votr-function-diagram',
+      },
+      {
+        type: 'text',
+        heading: 'Wireframes',
+      },
+      {
+        type: 'votr-wireframes',
+      },
+      {
+        type: 'votr-final-product',
+        heading: 'Final Product',
+      },
+      {
+        type: 'storyboard',
+        heading: 'Journey of a Gen Z Girl:',
+        panels: [
+          {
+            src: '/projects/votrnet/storyboard-1.png',
+            alt: 'A Gen Z girl interested in abortion rights',
+            caption: 'A Gen Z girl interested in abortion rights wanted to learn about related policies.',
+          },
+          {
+            src: '/projects/votrnet/storyboard-2.png',
+            alt: 'She discovers VOTRNET',
+            caption: 'She discovered VOTRNET and connected with many people who share her interest in the topic.',
+          },
+          {
+            src: '/projects/votrnet/storyboard-3.png',
+            alt: 'She joins a group chat',
+            caption: 'She joined a related group chat and invited members to work on the collaborative board.',
+          },
+          {
+            src: '/projects/votrnet/storyboard-4.png',
+            alt: 'They complete the board',
+            caption: 'Together, they completed the board.',
+          },
+          {
+            src: '/projects/votrnet/storyboard-5.png',
+            alt: 'They met up at an assembly',
+            caption: 'They met up at an assembly to encourage others to join the election and fight for their rights.',
+          },
+        ],
+      },
+      {
+        type: 'votr-social-feature',
+      },
+      {
+        type: 'votr-board-feature',
+      },
+      {
+        type: 'takeaway-list',
+        heading: 'Key Learnings',
+        items: [
+          {
+            title: 'Cultural fit beats political messaging',
+            body: 'Gen Z responds to campaigns that meet them in their existing social context. The Tinder collaboration worked because it embedded the voting message inside a behavior they already valued: connection. Political design has to earn its place in culture before it earns attention.',
+          },
+          {
+            title: 'Research shapes creative constraints, not just insights',
+            body: 'Every creative decision, from the campaign tagline to the Collaborative Board feature, traced back to a specific research finding. Treating research as a constraint rather than a reference kept the work focused and defensible in client presentations.',
+          },
+          {
+            title: 'Product and campaign design are the same discipline',
+            body: 'The best outcome of this project was realizing that the campaign and the app redesign were solving the same problem from different angles. A strong campaign creates expectations that the product must then fulfill. Designing both together produces a more coherent experience.',
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'three-wishes',
+    hidden: true,
     title: 'Three Wishes',
     category: 'Marketing',
     year: '2023',
@@ -780,31 +1401,8 @@ export const projects: Project[] = [
     sections: [],
   },
   {
-    slug: 'hyundai-ioniq5',
-    title: 'Hyundai Ioniq5',
-    category: 'Marketing',
-    year: '2022',
-    role: 'Brand Strategist',
-    tools: ['Market Analysis', 'Positioning Strategy', 'Deck Design'],
-    duration: '5 weeks',
-    coverImage: '/projects/hyundai-ioniq5/cover.jpg',
-    summary: 'Strategic positioning plan for the Ioniq5 targeting early EV adopters in North America.',
-    sections: [],
-  },
-  {
-    slug: 'marshall-brand',
-    title: 'Marshall Brand Revitalization',
-    category: 'Marketing',
-    year: '2022',
-    role: 'Marketing Strategist',
-    tools: ['Brand Audit', 'Consumer Research', 'Creative Direction'],
-    duration: '4 weeks',
-    coverImage: '/projects/marshall-brand/cover.jpg',
-    summary: 'A brand revitalization strategy reconnecting Marshall with younger audio enthusiasts.',
-    sections: [],
-  },
-  {
     slug: 'selected-works',
+    hidden: true,
     title: 'Selected Works',
     category: 'Art & Design',
     year: '2019–2023',
@@ -822,10 +1420,11 @@ export function getProjectBySlug(slug: string): Project | undefined {
 }
 
 export function getAdjacentProjects(slug: string): { prev: Project | null; next: Project | null } {
-  const index = projects.findIndex(p => p.slug === slug)
+  const visible = projects.filter(p => !p.hidden)
+  const index = visible.findIndex(p => p.slug === slug)
   if (index === -1) return { prev: null, next: null }
   return {
-    prev: index > 0 ? projects[index - 1] : null,
-    next: index < projects.length - 1 ? projects[index + 1] : null,
+    prev: index > 0 ? visible[index - 1] : null,
+    next: index < visible.length - 1 ? visible[index + 1] : null,
   }
 }

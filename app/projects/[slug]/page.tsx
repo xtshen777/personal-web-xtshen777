@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/lib/projects'
+import { getSectionHeadings } from '@/lib/section-headings'
 import Navbar from '@/components/Navbar'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectOverview from '@/components/projects/ProjectOverview'
 import ProjectContent from '@/components/projects/ProjectContent'
 import ProjectNav from '@/components/projects/ProjectNav'
+import ProjectSideNav from '@/components/projects/ProjectSideNav'
 
 export function generateStaticParams() {
   return projects.map(p => ({ slug: p.slug }))
@@ -25,6 +27,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) return notFound()
 
   const { prev, next } = getAdjacentProjects(params.slug)
+  const headings = getSectionHeadings(project.sections)
 
   return (
     <>
@@ -34,6 +37,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           title={project.title}
           coverImage={project.coverImage}
           coverPosition={project.coverPosition}
+          coverFit={project.coverFit}
         />
         <div className="max-w-6xl mx-auto px-6 pt-10 pb-0">
           <span className="text-xs uppercase tracking-widest text-muted/60 mb-3 block">
@@ -55,6 +59,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {project.summary}
           </p>
         </div>
+        <ProjectSideNav headings={headings} />
         <ProjectContent sections={project.sections} />
         <ProjectNav prev={prev} next={next} />
 

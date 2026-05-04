@@ -39,7 +39,7 @@ export default function IPhoneMockup({ src, alt }: Props) {
             <img
               src={assetPath(src)}
               alt={alt ?? ''}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-contain object-top"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
           )}

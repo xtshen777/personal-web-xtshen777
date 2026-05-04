@@ -5,7 +5,7 @@ import { projects } from '@/lib/projects'
 import ProjectCard from './ProjectCard'
 
 type Filter = 'All' | 'UX/UI' | 'Product' | 'Marketing' | 'Art & Design'
-const FILTERS: Filter[] = ['All', 'UX/UI', 'Product', 'Marketing', 'Art & Design']
+const FILTERS: Filter[] = ['All', 'UX/UI', 'Product', 'Marketing']
 const FEATURED_SLUGS = new Set(['pixmancer', 'whatsdeal'])
 
 export default function Projects() {
@@ -13,7 +13,7 @@ export default function Projects() {
 
   const filtered = (active === 'All' ? projects : projects.filter(p =>
     p.category === active || p.extraCategories?.includes(active)
-  ))
+  )).filter(p => !p.hidden)
     .slice()
     .sort((a, b) => {
       const aF = FEATURED_SLUGS.has(a.slug) ? 0 : 1

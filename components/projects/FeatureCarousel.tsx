@@ -5,13 +5,14 @@ import IPhoneMockup from './IPhoneMockup'
 import { assetPath } from '@/lib/asset-path'
 
 interface Slide {
-  title: string
-  description: string
+  label?: string
+  title?: string
+  description?: string
   src: string
   alt: string
 }
 
-export default function FeatureCarousel({ slides, variant = 'iphone' }: { slides: Slide[]; variant?: 'iphone' | 'screen' }) {
+export default function FeatureCarousel({ slides, variant = 'iphone' }: { slides: Slide[]; variant?: 'iphone' | 'screen' | 'overview' | 'photo' }) {
   const ref = useRef<HTMLDivElement>(null)
   const [current, setCurrent] = useState(0)
   const [locked, setLocked] = useState(false)
@@ -76,9 +77,36 @@ export default function FeatureCarousel({ slides, variant = 'iphone' }: { slides
         {extended.map((s, i) => (
           <div
             key={i}
-            className={`shrink-0 snap-start ${variant === 'screen' ? 'w-[92%] md:w-[88%]' : 'w-[75%] md:w-[calc(50%-8px)]'}`}
+            className={`shrink-0 snap-start ${variant === 'photo' ? 'w-[85%] md:w-[calc(50%-8px)]' : variant === 'screen' ? 'w-[92%] md:w-[88%]' : variant === 'overview' ? 'w-[80%] md:w-[calc(33.33%-11px)]' : 'w-[75%] md:w-[calc(50%-8px)]'}`}
           >
-            {variant === 'screen' ? (
+            {variant === 'photo' ? (
+              <div className="rounded-2xl overflow-hidden aspect-video">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={assetPath(s.src)}
+                  alt={s.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : variant === 'overview' ? (
+              <div className="bg-mist rounded-2xl overflow-hidden h-full flex flex-col">
+                <div className="px-6 pt-6 pb-4">
+                  {s.label && (
+                    <p className="text-xs font-semibold text-muted/60 uppercase tracking-widest mb-1">{s.label}</p>
+                  )}
+                  <h4 className="font-display font-bold text-deep text-lg">{s.title}</h4>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={assetPath(s.src)}
+                  alt={s.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                <div className="px-6 py-5 flex-1">
+                  <p className="text-muted text-sm leading-relaxed">{s.description}</p>
+                </div>
+              </div>
+            ) : variant === 'screen' ? (
               <div className="bg-mist rounded-2xl p-4">
                 <img
                   src={assetPath(s.src)}

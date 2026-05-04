@@ -55,9 +55,16 @@ Never put heading and body in the same text block when an image follows or prece
 | `stats` | Key metrics row (3–4 numbers) |
 | `table` | Competitive analysis, A/B test results |
 | `pain-points` | Core Problem: stat grid + focus area pills |
+| `cards` | **insight cards**: 3-column grid, gradient title (text-2xl bold) + body — use for Key Insights, Creative Mission, feature highlights |
 | `takeaway-list` | Key Learnings: titled card list |
 | `carousel` variant `iphone` | Feature screens in iPhone frames |
 | `carousel` variant `screen` | Platform overview screenshots (2 slides) |
+
+### Project metadata format
+
+- **`time`**: Use `YYYY.MM - YYYY.MM` format (e.g. `'2024.07 - 2024.11'`). Never use slashes, dashes with spaces only, or year-only values.
+- **`year`**: Keep as 4-digit year string (e.g. `'2024'`) — used for card display only.
+- **`duration`**: Plain English (e.g. `'4 months'`).
 
 ### Image files
 

@@ -8,7 +8,7 @@ const STATS = [
 const SKILLS = [
   'Product Strategy', 'User Research', 'Figma', 'Axure',
   'Prototyping', 'Adobe Creative Cloud', 'Growth Strategy',
-  'Cross-functional Leadership', 'Marketing', 'Brand Design',
+  'Cross-functional Leadership', 'Marketing', 'Brand Design', 'Vibe Coding',
 ]
 
 export default function About() {
